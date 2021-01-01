@@ -1,11 +1,11 @@
 <?php session_start();
     if(isset($_SESSION["logged-in"])){
         if($_SESSION["logged-in"] == true){
-            if($_SESSION["lang"] == true){
-            header("Location: en.dashboard.php");
+            if($_SESSION["lang"] == 0){
+            header("Location: en/en.dashboard.php");
             }
             else {
-            header("Location: hu.dashboard.php");
+            header("Location: hu/hu.dashboard.php");
             }
         }
     }

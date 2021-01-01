@@ -1,8 +1,15 @@
 <?php session_start();
-if (!isset($_SESSION["logged-in"])) {
-    header("Location: index.php");
+    if(isset($_SESSION["logged-in"])){
+        if($_SESSION["logged-in"] == true){
+            if($_SESSION["lang"] == 0){
+            header("Location: ../en/en.dashboard.php");
+            }
+        }
+    }
+else {
+    header("Location: ../index.php");
 }
-include "../inc/connection.inc.php";
+include "../inc/inc.connection.php";
 $conn = new Connection();
 ?>
 <!doctype html>
@@ -26,36 +33,7 @@ $conn = new Connection();
         </form>
     </div>
     <div align="center">
-    <h2>Itemek modositasa:</h2>
-        <form action="../inc/modify.inc.php" name="updateItem" method="post">
-            <select name='selection' size="1">
-            <?php
-                require "../inc/container.inc.php";
-            ?>
-            </select>
-            <br>
-            <input type="number" placeholder="Uj mennyiseg" name="itemQT" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
-            <br>
-            <input type="submit" value="Item modositasa!">
-        </form>
-    </div>
-    <div align="center">
-    <h2>Itemek torlese:</h2>
-        <form action="../inc/delete.inc.php" name="updateItem" method="post">
-            <select name='selection' size="1">
-            <?php
-                require "../inc/container.inc.php";
-            ?>
-            </select>
-            <input type="submit" value="Item torlese!">
-        </form>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div align="center">
-        <form action="../inc/logout.inc.php">
+        <form action="../inc/inc.logout.php">
         <input type="submit" value="Log out!">
         </form>
     </div>

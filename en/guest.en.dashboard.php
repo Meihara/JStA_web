@@ -1,5 +1,5 @@
 <?php
-include "../inc/connection.inc.php";
+include "../inc/inc.connection.php";
 $conn = new Connection();
 ?>
 <!doctype html>
@@ -52,7 +52,7 @@ $conn = new Connection();
     <br>
     <br>
     <div align="center">
-        <form action="../inc/logout.inc.php">
+        <form action="../inc/inc.logout.php">
         <input type="submit" value="Log out!">
         </form>
     </div>

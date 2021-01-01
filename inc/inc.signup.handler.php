@@ -13,7 +13,6 @@ if (isset($_POST['username']) && isset($_POST['pw']) && isset($_POST['langSelect
     echo "<br>";
     echo $dLang;*/
     $conn->signup($user, $pwd, $dLang);
-    
 } 
 else {
 
