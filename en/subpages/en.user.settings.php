@@ -25,7 +25,7 @@ $conn = new Connection();
     <div align="center">
         <h2>Your prefered language English.</h2>
         <h3>If you wish to change it, please select a new language and press update.</h3>
-        <form action="../../inc/inc.lang.updater.php" name="userSettings" method="post">
+        <form action="../../inc/inc.lang.updater.php" name="userSettingsLang" method="post">
             <select class="signupLangSelect1" name='changeLang' size="1">
             <option value='' disabled selected>---</option>
             <option value="0">English</option>
@@ -35,6 +35,19 @@ $conn = new Connection();
             <input class="actionButton1" type="submit" name="" value="Update!">
             <br>
             <input class="hiddenInput" type="text" name="page" value="../en/subpages/en.user.settings.php">
+        </form>
+    </div>
+    <div align="center">
+        <h2>Change your password!</h2>
+        <h3>If you wish to change it, enter your username as well as your previous password<br>and a new password, then press the Update button below.</h3>
+        <form action="../../inc/inc.password.updater.php" name="userSettingsPw" method="post">
+            <input type="text" name="username" placeholder="Username">
+            <br>
+            <input type="password" name="pwOld" placeholder="Old password">
+            <br>
+            <input type="password" name="pwNew" placeholder="New password">
+            <br>
+            <input class="actionButton1" type="submit" name="" value="Update!">
         </form>
     </div>
     <br>

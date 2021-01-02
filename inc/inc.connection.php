@@ -59,35 +59,31 @@ class Connection {
         $sql = "UPDATE users SET prefLang = ".$langC." WHERE id = ".$where."";
         $conn->query($sql);
         $_SESSION['lang'] = $langC;
-        echo "<!doctype html>
-        <html>
-        <head>
-        <link rel='stylesheet' href='../assets/common.stylesheet.css'>
-        </head>
-        <body>";
-        if($_SESSION['lang'] == 0){
-            echo "<div align='center'>
-            <h2>Update was sucessful!</h2>
-            <br>
-            <form action='../index.php' method='get'>
-                <input class='actionButton1' type='submit' name='' value='Next!'>
-            </form>
-            </div>
-            </body>
-            </html>";
+        require "static/static.message.langchanged.php";
+    
+    }
+    
+    function updatePassword($uid, $pwOld, $pwNew) {
+        $conn = $this->connect();
+        $sqlVerify = "SELECT id, name, pw, prefLang FROM users WHERE name='$uid'";
+        $result = $conn->query($sqlVerify);
+        while ($row = $result->fetch_assoc()) {
+            $hashedPwd = $row['pw'];
+            $where = $row['id'];
+        }
+        if (password_verify($pwOld, $hashedPwd)) {
+            $hash = password_hash($pwNew, PASSWORD_DEFAULT);
+            $sql = "UPDATE users SET pw = '$hash' WHERE name = '$uid'";
+            $conn->query($sql);
+            $langL = $_SESSION['lang'];
+            session_unset();
+            session_destroy();
+                require "static/static.message.pwchanged.php";
         }
         else {
-            echo "<div align='center'>
-            <h2>Sikeres frissítés!</h2>
-            <br>
-            <form action='../index.php' method='get'>
-                <input class='actionButton1' type='submit' name='' value='Tovább!'>
-            </form>
-            </div>
-            <body>
-            </html>";
+            header("Location: ../index.php");
         }
-    
+         
     }
         
         

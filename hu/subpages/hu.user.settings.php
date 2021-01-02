@@ -35,6 +35,19 @@ $conn = new Connection();
             <input class="actionButton1" type="submit" name="" value="Frissítés!">
         </form>
     </div>
+        <div align="center">
+        <h2>Jelszó megváltoztatása!</h2>
+        <h3>Amennyiben meg kívánod változtatni a jelszavadat, ird be a felhasználóneved, régi jelszavad,<br> és új jelszavad, majd kattints a Frissítés gombra!</h3>
+        <form action="../../inc/inc.password.updater.php" name="userSettingsPw" method="post">
+            <input type="text" name="username" placeholder="Felhasználónév">
+            <br>
+            <input type="password" name="pwOld" placeholder="Régi jelszó">
+            <br>
+            <input type="password" name="pwNew" placeholder="Új jelszó">
+            <br>
+            <input class="actionButton1" type="submit" name="" value="Frissítés!">
+        </form>
+    </div>
     <br>
 <body>
 </body>
