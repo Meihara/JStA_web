@@ -19,7 +19,9 @@ $conn = new Connection();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/common.stylesheet.css">
     <link rel="shortcut icon" href="../../Project-JStA/wip/logo/index_logo.png"/>
-    <title>JStA Dashboard</title>
+    <script src="../../scripts/jQueryAssets/SpryDOMUtils.js"></script>
+    <script src="../../scripts/inc.js"></script>
+    <title>JStA User settings</title>
 </head>
     
     <div align="center">
@@ -41,11 +43,11 @@ $conn = new Connection();
         <h2>Change your password!</h2>
         <h3>If you wish to change it, enter your username as well as your previous password<br>and a new password, then press the Update button below.</h3>
         <form action="../../inc/inc.password.updater.php" name="userSettingsPw" method="post">
-            <input type="text" name="username" placeholder="Username">
+            <input type="text" name="username" placeholder="Username" onkeyup="valid(this)" onblur="valid(this)" maxlength="36">
             <br>
-            <input type="password" name="pwOld" placeholder="Old password">
+            <input type="password" name="pwOld" placeholder="Old password" maxlength="36">
             <br>
-            <input type="password" name="pwNew" placeholder="New password">
+            <input type="password" name="pwNew" placeholder="New password" maxlength="36">
             <br>
             <input class="actionButton1" type="submit" name="" value="Update!">
         </form>

@@ -19,7 +19,9 @@ $conn = new Connection();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/common.stylesheet.css">
     <link rel="shortcut icon" href="../../Project-JStA/wip/logo/index_logo.png"/>
-    <title>JStA Dashboard</title>
+    <script src="../scripts/jQueryAssets/SpryDOMUtils.js"></script>
+    <script src="../scripts/inc.js"></script>
+    <title>JStA Felhasználói beálítások</title>
 </head>
     
     <div align="center">
@@ -39,7 +41,7 @@ $conn = new Connection();
         <h2>Jelszó megváltoztatása!</h2>
         <h3>Amennyiben meg kívánod változtatni a jelszavadat, ird be a felhasználóneved, régi jelszavad,<br> és új jelszavad, majd kattints a Frissítés gombra!</h3>
         <form action="../../inc/inc.password.updater.php" name="userSettingsPw" method="post">
-            <input type="text" name="username" placeholder="Felhasználónév">
+            <input type="text" name="username" placeholder="Felhasználónév" onkeyup="valid(this)" onblur="valid(this)">
             <br>
             <input type="password" name="pwOld" placeholder="Régi jelszó">
             <br>

@@ -1,0 +1,7 @@
+FIXED IN UPDATE 1.4{
+--1. username overflow
+--2. someone can change others passwords
+--3. debug message when trying to change password for nonexistant user
+--4. special characters in username ('')
+--5. password can be read when using ' in username (move hash phase to handler script)
+}
