@@ -2,7 +2,7 @@
 session_start();
 include "inc.connection.php";
 $conn = new Connection();
-if (isset($_POST['username']) && isset($_POST['pwOld']) && isset($_POST['pwNew'])) {
+if (!empty($_POST['username']) && !empty($_POST['pwOld']) && !empty($_POST['pwNew'])) {
     $uid = $_POST['username'];
     $pwOld = $_POST["pwOld"];
     $pwNew = $_POST['pwNew'];

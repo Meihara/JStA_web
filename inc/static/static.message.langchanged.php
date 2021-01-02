@@ -3,6 +3,7 @@ echo "<!doctype html>
         <html>
         <head>
         <link rel='stylesheet' href='../assets/common.stylesheet.css'>
+        <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
         </head>
         <body>";
         if($_SESSION['lang'] == 0){

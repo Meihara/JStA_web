@@ -65,6 +65,7 @@ class Connection {
     
     function updatePassword($uid, $pwOld, $pwNew) {
         $conn = $this->connect();
+        $langL = $_SESSION['lang'];
         $sqlVerify = "SELECT id, name, pw, prefLang FROM users WHERE name='$uid'";
         $result = $conn->query($sqlVerify);
         while ($row = $result->fetch_assoc()) {
@@ -75,13 +76,13 @@ class Connection {
             $hash = password_hash($pwNew, PASSWORD_DEFAULT);
             $sql = "UPDATE users SET pw = '$hash' WHERE name = '$uid'";
             $conn->query($sql);
-            $langL = $_SESSION['lang'];
+            //$langL = $_SESSION['lang'];
             session_unset();
             session_destroy();
-                require "static/static.message.pwchanged.php";
+            require "static/static.message.pwchanged.php";
         }
         else {
-            header("Location: ../index.php");
+            require "static/static.message.pwchange.failed.php";
         }
          
     }

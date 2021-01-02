@@ -8,10 +8,11 @@ echo "<!doctype html>
         <body>";
         if($langL == 0){
             echo "<div align='center'>
-            <h2>Update was sucessful!</h2>
+            <h2>Failed to update password!</h2>
+            <h3>Username or password not correct! <br>Please try again.</h3>
             <br>
-            <form action='../index.php' method='get'>
-                <input class='actionButton1' type='submit' name='' value='Next!'>
+            <form action='../en/subpages/en.user.settings.php' method='get'>
+                <input class='actionButton1' type='submit' name='' value='OK'>
             </form>
             </div>
             </body>
@@ -19,10 +20,11 @@ echo "<!doctype html>
         }
         else {
             echo "<div align='center'>
-            <h2>Sikeres frissítés!</h2>
+            <h2>Jelszófrissítés sikertelen!</h2>
+            <h3>Felhasználónév vagy jelszó téves!<br>Próbáld újra.</h3>
             <br>
-            <form action='../index.php' method='get'>
-                <input class='actionButton1' type='submit' name='' value='Tovább!'>
+            <form action='../hu/subpages/hu.user.settings.php' method='get'>
+                <input class='actionButton1' type='submit' name='' value='OK'>
             </form>
             </div>
             <body>
