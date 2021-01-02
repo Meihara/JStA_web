@@ -23,22 +23,14 @@ $conn = new Connection();
 </head>
     
     <div align="center">
-        <h2>Termek hozzaadasa:</h2>
-        <br>
-        <form action="../inc/insert.inc.php" name="addItem" method="post">
-            <p>Az uj item neve: <input type="text" name="itemName" placeholder="Uj item.."></p>
-            
-            <p>Uj itembol rendelkezesre all: <input type="number" name="itemQT" placeholder="Mennyiseg" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"></p>
-            <input type="submit" name="" value="Hozzaadas!">
+        <form action="subpages/en.user.settings.php" name="userSettings" method="post">
+            <input class="actionButton1" type="submit" name="" value="User settings">
         </form>
     </div>
     <br>
-    <br>
-    <br>
-    <br>
     <div align="center">
         <form action="../inc/inc.logout.php">
-        <input type="submit" value="Log out!">
+        <input class="actionButton1" type="submit" value="Log out!">
         </form>
     </div>
 <body>

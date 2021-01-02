@@ -27,4 +27,19 @@
     font-size: 23px;
     font-weight: bolder;
 }
+.actionButton1 {
+    height: 30px;
+    width: 170px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+.hiddenInput {
+    visibility: hidden;
+}
+.settingsButtonHu {
+    height: 30px;
+    width: 240px;
+    font-size: 20px;
+    font-weight: bolder;
+}
 
