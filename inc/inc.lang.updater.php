@@ -5,7 +5,14 @@ $conn = new Connection();
 if (isset($_POST['changeLang'])) {
     $langC = $_POST['changeLang'];
     $where = $_SESSION["userID"];
-    $conn->updateLang($langC, $where);
+    if($langC == '0' || $langC == '1'){
+        $conn->updateLang($langC, $where);
+        //require "static/static.message.troll.php";
+    }
+    else{
+    require "static/static.message.troll.php";
+    //$conn->updateLang($langC, $where);
+    }
     } 
 else {
     if($_SESSION['lang'] == 0){
