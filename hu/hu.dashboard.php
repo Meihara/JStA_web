@@ -21,7 +21,11 @@ $conn = new Connection();
     <link rel="shortcut icon" href="../Project-JStA/wip/logo/index_logo.png"  />
     <title>JStA Irányítópult</title>
 </head>
-    
+        <div align="center">
+        <form action="subpages/hu.word.practice.tool.php" name="userSettings" method="post">
+            <input class="actionButton2" type="submit" name="" value="Szavak gyakorlása">
+        </form>
+    </div>
     <div align="center">
         <form action="subpages/hu.user.settings.php" name="userSettings" method="post">
             <input class="settingsButtonHu" type="submit" name="" value="Felhasználói beálítások">

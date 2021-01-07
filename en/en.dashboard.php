@@ -21,7 +21,11 @@ $conn = new Connection();
     <link rel="shortcut icon" href="../Project-JStA/wip/logo/index_logo.png"/>
     <title>JStA Dashboard</title>
 </head>
-    
+    <div align="center">
+        <form action="subpages/en.word.practice.tool.php" name="userSettings" method="post">
+            <input class="actionButton2" type="submit" name="" value="Word practice tool">
+        </form>
+    </div>
     <div align="center">
         <form action="subpages/en.user.settings.php" name="userSettings" method="post">
             <input class="actionButton1" type="submit" name="" value="User settings">

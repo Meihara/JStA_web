@@ -26,13 +26,13 @@
             <input class="indexButton1" type="submit" name="" value="Log In">
         </form>
         <form action="inc/inc.signup.php" name="signUpForm" method="post">
-            <input class="indexButton1" type="submit" name="" value="Sign Up">
+            <input class="indexButton1" type="submit" name="" value="Register">
         </form>
         <h1>Folytatás vendégként/Continue as guest</h1>
-        <form action="guest.hu.dashboard.php" name="guest" method="post">
+        <form action="hu/guest.hu.dashboard.php" name="guest" method="post">
             <input class="indexButton1" type="submit" name="" value="Magyar">
         </form>
-        <form action="guest.en.dashboard.php" name="guest" method="post">
+        <form action="en/guest.en.dashboard.php" name="guest" method="post">
             <input class="indexButton1" type="submit" name="" value="English">
         </form>
     </div>

@@ -11,6 +11,6 @@ if (isset($_POST['username']) && isset($_POST['pw'])) {
     
 } else {
 
-    header("Location: ../index.php");
+    header("Location: static/common/static.common.login.failed.php");
 }
 

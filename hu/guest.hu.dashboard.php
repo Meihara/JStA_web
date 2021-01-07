@@ -11,49 +11,14 @@ $conn = new Connection();
     <link rel="shortcut icon" href="../Project-JStA/wip/logo/index_logo.png"  />
     <title>-Vendég- JStA Irányítópult</title>
 </head>
-    
     <div align="center">
-        <h2>Termek hozzaadasa:</h2>
-        <br>
-        <form action="../inc/insert.inc.php" name="addItem" method="post">
-            <p>Az uj item neve: <input type="text" name="itemName" placeholder="Uj item.."></p>
-            
-            <p>Uj itembol rendelkezesre all: <input type="number" name="itemQT" placeholder="Mennyiseg" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"></p>
-            <input type="submit" name="" value="Hozzaadas!">
+        <form action="subpages/hu.word.practice.tool.php" name="userSettings" method="post">
+            <input class="actionButton2" type="submit" name="" value="Szavak gyakorlása">
         </form>
     </div>
     <div align="center">
-    <h2>Itemek modositasa:</h2>
-        <form action="../inc/modify.inc.php" name="updateItem" method="post">
-            <select name='selection' size="1">
-            <?php
-                require "../inc/container.inc.php";
-            ?>
-            </select>
-            <br>
-            <input type="number" placeholder="Uj mennyiseg" name="itemQT" min="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
-            <br>
-            <input type="submit" value="Item modositasa!">
-        </form>
-    </div>
-    <div align="center">
-    <h2>Itemek torlese:</h2>
-        <form action="../inc/delete.inc.php" name="updateItem" method="post">
-            <select name='selection' size="1">
-            <?php
-                require "../inc/container.inc.php";
-            ?>
-            </select>
-            <input type="submit" value="Item torlese!">
-        </form>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div align="center">
-        <form action="../inc/inc.logout.php">
-        <input type="submit" value="Log out!">
+    <form action="../inc/inc.signup.php" name="signUpForm" method="post">
+            <input class="actionButton2" type="submit" name="" value="Regisztrálás">
         </form>
     </div>
 <body>

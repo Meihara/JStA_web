@@ -13,7 +13,7 @@ class Connection {
         $result = $conn->query($userExistsSql);
         if(mysqli_num_rows($result) > 0){
 
-            header("Location: ../index.php");
+            header("Location: static/common/static.common.register.user.exists.php");
         }
         else{
             $hash = password_hash($pwd, PASSWORD_DEFAULT);
@@ -50,7 +50,7 @@ class Connection {
             }
         } else {
 
-            header("Location: ../index.php");
+            header("Location: static/common/static.common.login.failed.php");
         }
     }
     
