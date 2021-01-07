@@ -19,7 +19,7 @@
     <link rel='shortcut icon' href='Project-JStA/wip/logo/index_logo.png'/>
     <script src='../scripts/jQueryAssets/SpryDOMUtils.js'></script>
     <script src='../scripts/inc.js'></script>
-    <title>JStA Log In</title>
+<title>JStA Log In</title>
 </head>
 <body>
     <div align='center'>

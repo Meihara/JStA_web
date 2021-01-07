@@ -19,8 +19,8 @@ $conn = new Connection();
     <title>JStA Szógyakorlás</title>
 </head>
     <div align="center">
-        <form action="subpages/en.word.practice.tool.php" name="userSettings" method="post">
-            <input class="actionButton2" type="submit" name="" value="Word practice tool">
+        <form action="hu.word.practice.random.php" name="userSettings" method="post">
+            <input class="actionButton2" type="submit" name="" value="Tudod a szót? (játék)">
         </form>
     </div>
     <div align="center">

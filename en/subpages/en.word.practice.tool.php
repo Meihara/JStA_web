@@ -19,7 +19,7 @@ $conn = new Connection();
     <title>JStA Word practice</title>
 </head>
     <div align="center">
-        <form action="subpages/en.word.practice.tool.php" name="userSettings" method="post">
+        <form action="en.word.practice.random.php" name="userSettings" method="post">
             <input class="actionButton2" type="submit" name="" value="Word practice tool">
         </form>
     </div>

@@ -5,3 +5,5 @@ FIXED IN UPDATE 1.4{
 --4. special characters in username ('')
 --5. password can be read when using ' in username (move hash phase to handler script)
 }
+6. refresh needed after pressing back button on dictionary page and game page when not logged in
+7. back button does not work in random words game
