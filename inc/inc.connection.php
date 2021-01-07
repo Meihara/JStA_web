@@ -86,6 +86,50 @@ class Connection {
         }
          
     }
+    
+    function dictionaryFillEn() {
+        $conn = $this->connect();
+        $sql = "SELECT * FROM words";
+        $output = ' ';
+        $result = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_array($result)) {
+            $output .= '<tr><th>'.$row['id_word'].'</th><th class="th1">'.$row['kana_w'].'</th><th class="th1">'.$row['roman_w'].'</th>';
+            if($row['eng_w'] == $row['eng2_w']){
+                $output .= '<th class="th1">'.$row['eng_w'].'</th><th class="th1">---</th></tr>';
+            }
+            else {
+                $output .= '<th class="th1">'.$row['eng_w'].'</th><th class="th1">'.$row['eng2_w'].'</th></tr>' ;   
+            }
+            }
+        echo $output;
+    }
+    
+    function dictionaryFillHu() {
+        $conn = $this->connect();
+        $sql = "SELECT * FROM words";
+        $output = ' ';
+        $result = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_array($result)) {
+            $output .= '<tr><th>'.$row['id_word'].'</th><th class="th1">'.$row['kana_w'].'</th><th class="th1">'.$row['roman_w'].'</th>';
+            if($row['hun_w'] == $row['hun2_w']){
+                $output .= '<th class="th1">'.$row['hun_w'].'</th><th class="th1">---</th></tr>';
+            }
+            else {
+                $output .= '<th class="th1">'.$row['hun_w'].'</th><th class="th1">'.$row['hun2_w'].'</th></tr>' ;   
+            }
+            }
+        echo $output;
+    }
         
-        
+    function guestSessionEn() {
+        $_SESSION["logged-in"] = false;
+        $_SESSION['lang'] = 0;
+        header("Location: ../en/guest.en.dashboard.php");
+    }
+    
+    function guestSessionHu() {
+        $_SESSION["logged-in"] = false;
+        $_SESSION['lang'] = 1;
+        header("Location: ../hu/guest.hu.dashboard.php");
+    }
     }

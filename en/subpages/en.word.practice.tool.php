@@ -24,8 +24,8 @@ $conn = new Connection();
         </form>
     </div>
     <div align="center">
-        <form action="subpages/en.user.settings.php" name="userSettings" method="post">
-            <input class="actionButton1" type="submit" name="" value="User settings">
+        <form action="en.dictionary.php" name="userSettings" method="post">
+            <input class="actionButton1" type="submit" name="" value="Dictionary">
         </form>
     </div>
     <br>

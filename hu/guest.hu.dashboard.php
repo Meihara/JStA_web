@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../inc/inc.connection.php";
 $conn = new Connection();
 ?>
