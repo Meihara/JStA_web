@@ -138,7 +138,7 @@ class Connection {
         $statement = rand(1,3);
         $sql = "SELECT * FROM words ORDER BY RAND() LIMIT 1";
         $result = mysqli_query($conn, $sql);
-        if($statement = 1) {
+        if($statement == 1) {
             //hiragana > magyar
             while($row = mysqli_fetch_array($result)){
                 echo "<!doctype html>
@@ -150,11 +150,11 @@ class Connection {
                     <link rel='shortcut icon' href='../../Project-JStA/wip/logo/index_logo.png'/>
                     <script src='../../scripts/jQueryAssets/SpryDOMUtils.js'></script>
                     <script src='../../scripts/back.js'></script>
-                    <title>JStA Word practice</title>
+                    <title>JStA Random szójáték</title>
                 </head>
                 <body>
                 <div align='center'>
-                    <h3>Mit jelent ".$row['kana_w']." Magyarul?</h3>
+                    <h3>Mit jelent '".$row['kana_w']."' Magyarul?</h3>
                     <form action='../../inc/inc.hu.word.game.random.check.php' name='wordRandomGame' method='post'>
                         <input name='answer' type='text' id='input1' placeholder='Válasz' onkeyup='valid(this)' onblur='valid(this)' maxlength='200'>
                         <br>
@@ -165,7 +165,7 @@ class Connection {
                     </form>
                 </div>
                 <div align='center'>
-                <form action=''../../inc/inc.hu.guest.back.home.php'>
+                <form action='../../inc/inc.hu.guest.back.home.php'>
                     <input class='actionButton2' type='submit' value='Vissza az Irányítópultra!'>
                 </form>
                 </div>
@@ -173,7 +173,7 @@ class Connection {
                 </html>";
             }
         }
-        else if($statement = 2){
+        else if($statement == 2){
             //hiragana > ro-maji
             while($row = mysqli_fetch_array($result)){
                 echo "<!doctype html>
@@ -185,11 +185,11 @@ class Connection {
                     <link rel='shortcut icon' href='../../Project-JStA/wip/logo/index_logo.png'/>
                     <script src='../../scripts/jQueryAssets/SpryDOMUtils.js'></script>
                     <script src='../../scripts/back.js'></script>
-                    <title>JStA Word practice</title>
+                    <title>JStA Random szójáték</title>
                 </head>
                 <body>
                 <div align='center'>
-                    <h3>Írd átt ".$row['kana_w']."-t Ro-majira írd le latin betűkkel.</h3>
+                    <h3>Írd átt '".$row['kana_w']."'-t Ro-majira. (írd le latin betűkkel.)</h3>
                     <form action='../../inc/inc.hu.word.game.random.check.php' name='wordRandomGame' method='post'>
                         <input name='answer' type='text' id='input1' placeholder='Válasz' onkeyup='valid(this)' onblur='valid(this)' maxlength='200'>
                         <br>
@@ -200,7 +200,7 @@ class Connection {
                     </form>
                 </div>
                 <div align='center'>
-                <form action=''../../inc/inc.hu.guest.back.home.php'>
+                <form action='../../inc/inc.hu.guest.back.home.php'>
                     <input class='actionButton2' type='submit' value='Vissza az Irányítópultra!'>
                 </form>
                 </div>
@@ -208,7 +208,7 @@ class Connection {
                 </html>";
             }
         }
-        else if($statement = 3){
+        else if($statement == 3){
             //magyar > hiragana
             while($row = mysqli_fetch_array($result)){
                 echo "<!doctype html>
@@ -220,11 +220,11 @@ class Connection {
                     <link rel='shortcut icon' href='../../Project-JStA/wip/logo/index_logo.png'/>
                     <script src='../../scripts/jQueryAssets/SpryDOMUtils.js'></script>
                     <script src='../../scripts/back.js'></script>
-                    <title>JStA Word practice</title>
+                    <title>JStA Random szójáték</title>
                 </head>
                 <body>
                 <div align='center'>
-                    <h3>Fordítsd le '".$row['kana_w']."'-t Japánra. (Hiragana-t használj!)</h3>
+                    <h3>Fordítsd le '".$row['hun_w']."'-t Japánra. (Hiragana-t használj!)</h3>
                     <form action='../../inc/inc.hu.word.game.random.check.php' name='wordRandomGame' method='post'>
                         <input name='answer' type='text' id='input1' placeholder='Válasz' onkeyup='valid(this)' onblur='valid(this)' maxlength='200'>
                         <br>
@@ -235,7 +235,7 @@ class Connection {
                     </form>
                 </div>
                 <div align='center'>
-                <form action=''../../inc/inc.hu.guest.back.home.php'>
+                <form action='../../inc/inc.hu.guest.back.home.php'>
                     <input class='actionButton2' type='submit' value='Vissza az Irányítópultra!'>
                 </form>
                 </div>
@@ -255,7 +255,7 @@ class Connection {
         $trueanswer2;
         $beans;
         $sql = "SELECT * FROM words WHERE id_word='$truth'";
-        if ($meth  = "hi-hu"){
+        if ($meth  == "hi-hu"){
              $result = mysqli_query($conn, $sql);
             while ($row = $result->fetch_assoc()) {
                 $trueanswer1 = $row['hun_w'];
@@ -268,12 +268,17 @@ class Connection {
                     <head>
                     <link rel='stylesheet' href='../assets/common.stylesheet.css'>
                     <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <script src='../../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                    <script src='../../scripts/back.js'></script>
+                    <title>JStA Random szójáték</title>
                     </head>
                     <body>";
                         echo "<div align='center'>
                         <h2>Helyes válasz!</h2>
                         <br>
-                        <h3>".$beans." valóban azt jelenti, hogy ".$trueanswer1."</h3>
+                        <h3>'".$beans."' valóban azt jelenti, hogy '".$trueanswer1."'.</h3>
                         <form action='../hu/subpages/hu.word.practice.random.php' method='get'>
                             <input class='actionButton1' type='submit' name='' value='Következő!'>
                         </form>
@@ -287,12 +292,17 @@ class Connection {
                     <head>
                     <link rel='stylesheet' href='../assets/common.stylesheet.css'>
                     <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <script src='../../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                    <script src='../../scripts/back.js'></script>
+                    <title>JStA Random szójáték</title>
                     </head>
                     <body>";
                         echo "<div align='center'>
                         <h2>Nem találtad el!</h2>
                         <br>
-                        <h3>".$beans." azt jelenti, hogy ".$trueanswer1."</h3>
+                        <h3>'".$beans."' azt jelenti, hogy '".$trueanswer1."'.</h3>
                         <form action='../hu/subpages/hu.word.practice.random.php' method='get'>
                             <input class='actionButton1' type='submit' name='' value='Következő!'>
                         </form>
@@ -301,7 +311,7 @@ class Connection {
                         </html>";
             }
         }
-        else if ($meth = "hi-ro"){
+        else if ($meth == "hi-ro"){
             $result = mysqli_query($conn, $sql);
             while ($row = $result->fetch_assoc()) {
                 $trueanswer1 = $row['roman_w'];
@@ -314,12 +324,17 @@ class Connection {
                     <head>
                     <link rel='stylesheet' href='../assets/common.stylesheet.css'>
                     <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <script src='../../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                    <script src='../../scripts/back.js'></script>
+                    <title>JStA Random szójáték</title>
                     </head>
                     <body>";
                         echo "<div align='center'>
                         <h2>Helyes válasz!</h2>
                         <br>
-                        <h3>".$ans."-t valóban úgy kell írni, hogy ".$trueanswer1."</h3>
+                        <h3>'".$beans."'-t valóban úgy kell írni, hogy '".$trueanswer1."'.</h3>
                         <form action='../hu/subpages/hu.word.practice.random.php' method='get'>
                             <input class='actionButton1' type='submit' name='' value='Következő!'>
                         </form>
@@ -333,12 +348,17 @@ class Connection {
                     <head>
                     <link rel='stylesheet' href='../assets/common.stylesheet.css'>
                     <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <script src='../../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                    <script src='../../scripts/back.js'></script>
+                    <title>JStA Random szójáték</title>
                     </head>
                     <body>";
                         echo "<div align='center'>
                         <h2>Nem találtad el!</h2>
                         <br>
-                        <h3>".$beans." azt jelenti, hogy ".$trueanswer1."</h3>
+                        <h3>'".$beans."'-t úgy kell írni, hogy '".$trueanswer1."'.</h3>
                         <form action='../hu/subpages/hu.word.practice.random.php' method='get'>
                             <input class='actionButton1' type='submit' name='' value='Következő!'>
                         </form>
@@ -360,12 +380,17 @@ class Connection {
                     <head>
                     <link rel='stylesheet' href='../assets/common.stylesheet.css'>
                     <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <script src='../../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                    <script src='../../scripts/back.js'></script>
+                    <title>JStA Random szójáték</title>
                     </head>
                     <body>";
                         echo "<div align='center'>
                         <h2>Helyes válasz!</h2>
                         <br>
-                        <h3>".$ans." valóban azt jelenti, hogy ".$trueanswer1."</h3>
+                        <h3>'".$beans."' valóban azt jelenti, hogy '".$trueanswer1."'.</h3>
                         <form action='../hu/subpages/hu.word.practice.random.php' method='get'>
                             <input class='actionButton1' type='submit' name='' value='Következő!'>
                         </form>
@@ -379,12 +404,17 @@ class Connection {
                     <head>
                     <link rel='stylesheet' href='../assets/common.stylesheet.css'>
                     <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <script src='../../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                    <script src='../../scripts/back.js'></script>
+                    <title>JStA Random szójáték</title>
                     </head>
                     <body>";
                         echo "<div align='center'>
                         <h2>Nem találtad el!</h2>
                         <br>
-                        <h3>".$beans." azt jelenti, hogy ".$trueanswer1."</h3>
+                        <h3>'".$beans."' azt jelenti, hogy '".$trueanswer1."'.</h3>
                         <form action='../hu/subpages/hu.word.practice.random.php' method='get'>
                             <input class='actionButton1' type='submit' name='' value='Következő!'>
                         </form>
@@ -402,7 +432,7 @@ class Connection {
         $statement = rand(1,3);
         $sql = "SELECT * FROM words ORDER BY RAND() LIMIT 1";
         $result = mysqli_query($conn, $sql);
-        if($statement = 1) {
+        if($statement == 1) {
             //hiragana > english
             while($row = mysqli_fetch_array($result)){
                 echo "<!doctype html>
@@ -418,7 +448,7 @@ class Connection {
                 </head>
                 <body>
                 <div align='center'>
-                    <h3>What does ".$row['kana_w']." mean?</h3>
+                    <h3>What does '".$row['kana_w']."' mean?</h3>
                     <form action='../../inc/inc.en.word.game.random.check.php' name='wordRandomGame' method='post'>
                         <input name='answer' type='text' id='input1' placeholder='Answer' onkeyup='valid(this)' onblur='valid(this)' maxlength='200'>
                         <br>
@@ -430,7 +460,7 @@ class Connection {
                 </div>
                 <br>
                 <div align='center'>
-                <form action=''../../inc/inc.en.guest.back.home.php'>
+                <form action='../../inc/inc.en.guest.back.home.php'>
                     <input class='actionButton1' type='submit' value='Back to home!'>
                 </form>
                 </div>
@@ -438,7 +468,7 @@ class Connection {
                 </html>";
             }
         }
-        else if($statement = 2){
+        else if($statement == 2){
             //hiragana > ro-maji
             while($row = mysqli_fetch_array($result)){
                 echo "<!doctype html>
@@ -454,7 +484,7 @@ class Connection {
                 </head>
                 <body>
                 <div align='center'>
-                    <h3>Write ".$row['kana_w']." in Ro-maji (with latin letters).</h3>
+                    <h3>Write '".$row['kana_w']."' in Ro-maji (with latin letters).</h3>
                     <form action='../../inc/inc.en.word.game.random.check.php' name='wordRandomGame' method='post'>
                         <input name='answer' type='text' id='input1' placeholder='Answer' onkeyup='valid(this)' onblur='valid(this)' maxlength='200'>
                         <br>
@@ -465,7 +495,7 @@ class Connection {
                     </form>
                 </div>
                 <div align='center'>
-                <form action=''../../inc/inc.en.guest.back.home.php'>
+                <form action='../../inc/inc.en.guest.back.home.php'>
                     <input class='actionButton1' type='submit' value='Back to home!'>
                 </form>
                 </div>
@@ -473,8 +503,8 @@ class Connection {
                 </html>";
             }
         }
-        else if($statement = 3){
-            //magyar > hiragana
+        else if($statement == 3){
+            //english > hiragana
             while($row = mysqli_fetch_array($result)){
                 echo "<!doctype html>
                 <html lang='en'>
@@ -489,7 +519,7 @@ class Connection {
                 </head>
                 <body>
                 <div align='center'>
-                    <h3>Translate '".$row['kana_w']."' to Japanese. (Use Hiragana!)</h3>
+                    <h3>Translate '".$row['eng_w']."' to Japanese. (Use Hiragana!)</h3>
                     <form action='../../inc/inc.en.word.game.random.check.php' name='wordRandomGame' method='post'>
                         <input name='answer' type='text' id='input1' placeholder='Answer' onkeyup='valid(this)' onblur='valid(this)' maxlength='200'>
                         <br>
@@ -500,7 +530,7 @@ class Connection {
                     </form>
                 </div>
                 <div align='center'>
-                <form action=''../../inc/inc.en.guest.back.home.php'>
+                <form action='../../inc/inc.en.guest.back.home.php'>
                     <input class='actionButton1' type='submit' value='Back to home!'>
                 </form>
                 </div>
@@ -520,7 +550,7 @@ class Connection {
         $trueanswer2;
         $beans;
         $sql = "SELECT * FROM words WHERE id_word='$truth'";
-        if ($meth  = "hi-en"){
+        if ($meth  == "hi-en"){
              $result = mysqli_query($conn, $sql);
             while ($row = $result->fetch_assoc()) {
                 $trueanswer1 = $row['eng_w'];
@@ -531,14 +561,19 @@ class Connection {
                     echo "<!doctype html>
                     <html>
                     <head>
-                    <link rel='stylesheet' href='../assets/common.stylesheet.css'>
-                    <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <link rel='stylesheet' href='../../assets/common.stylesheet.css'>
+                    <link rel='shortcut icon' href='../../Project-JStA/wip/logo/index_logo.png'/>
+                    <script src='../../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                    <script src='../../scripts/back.js'></script>
+                    <title>JStA Word practice</title>
                     </head>
                     <body>";
                         echo "<div align='center'>
                         <h2>Correct answer!</h2>
                         <br>
-                        <h3>".$beans." means ".$trueanswer1."</h3>
+                        <h3>'".$beans."' means '".$trueanswer1."'.</h3>
                         <form action='../en/subpages/en.word.practice.random.php' method='get'>
                             <input class='actionButton1' type='submit' name='' value='Next!'>
                         </form>
@@ -550,14 +585,19 @@ class Connection {
                 echo "<!doctype html>
                     <html>
                     <head>
-                    <link rel='stylesheet' href='../assets/common.stylesheet.css'>
-                    <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <link rel='stylesheet' href='../../assets/common.stylesheet.css'>
+                    <link rel='shortcut icon' href='../../Project-JStA/wip/logo/index_logo.png'/>
+                    <script src='../../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                    <script src='../../scripts/back.js'></script>
+                    <title>JStA Word practice</title>
                     </head>
                     <body>";
                         echo "<div align='center'>
                         <h2>Wrong answer!</h2>
                         <br>
-                        <h3>".$beans." means ".$trueanswer1."</h3>
+                        <h3>'".$beans."' means '".$trueanswer1."'.</h3>
                         <form action='../en/subpages/en.word.practice.random.php' method='get'>
                             <input class='actionButton1' type='submit' name='' value='Next!'>
                         </form>
@@ -566,7 +606,7 @@ class Connection {
                         </html>";
             }
         }
-        else if ($meth = "hi-ro"){
+        else if ($meth == "hi-ro"){
             $result = mysqli_query($conn, $sql);
             while ($row = $result->fetch_assoc()) {
                 $trueanswer1 = $row['roman_w'];
@@ -577,14 +617,19 @@ class Connection {
                     echo "<!doctype html>
                     <html>
                     <head>
-                    <link rel='stylesheet' href='../assets/common.stylesheet.css'>
-                    <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <link rel='stylesheet' href='../../assets/common.stylesheet.css'>
+                    <link rel='shortcut icon' href='../../Project-JStA/wip/logo/index_logo.png'/>
+                    <script src='../../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                    <script src='../../scripts/back.js'></script>
+                    <title>JStA Word practice</title>
                     </head>
                     <body>";
                         echo "<div align='center'>
                         <h2>Correct answer!</h2>
                         <br>
-                        <h3>".$ans." is written as ".$trueanswer1."</h3>
+                        <h3>'".$beans."' is written as '".$trueanswer1."'</h3>
                         <form action='../en/subpages/en.word.practice.random.php' method='get'>
                             <input class='actionButton1' type='submit' name='' value='Next!'>
                         </form>
@@ -596,14 +641,19 @@ class Connection {
                 echo "<!doctype html>
                     <html>
                     <head>
-                    <link rel='stylesheet' href='../assets/common.stylesheet.css'>
-                    <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <link rel='stylesheet' href='../../assets/common.stylesheet.css'>
+                    <link rel='shortcut icon' href='../../Project-JStA/wip/logo/index_logo.png'/>
+                    <script src='../../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                    <script src='../../scripts/back.js'></script>
+                    <title>JStA Word practice</title>
                     </head>
                     <body>";
                         echo "<div align='center'>
                         <h2>Wrong answer!</h2>
                         <br>
-                        <h3>".$beans." is written as ".$trueanswer1."</h3>
+                        <h3>'".$beans."' is written as '".$trueanswer1."'</h3>
                         <form action='../en/subpages/en.word.practice.random.php' method='get'>
                             <input class='actionButton1' type='submit' name='' value='Next!'>
                         </form>
@@ -623,14 +673,19 @@ class Connection {
                     echo "<!doctype html>
                     <html>
                     <head>
-                    <link rel='stylesheet' href='../assets/common.stylesheet.css'>
-                    <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <link rel='stylesheet' href='../../assets/common.stylesheet.css'>
+                    <link rel='shortcut icon' href='../../Project-JStA/wip/logo/index_logo.png'/>
+                    <script src='../../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                    <script src='../../scripts/back.js'></script>
+                    <title>JStA Word practice</title>
                     </head>
                     <body>";
                         echo "<div align='center'>
                         <h2>Correct answer!</h2>
                         <br>
-                        <h3>".$ans." means ".$trueanswer1."</h3>
+                        <h3>'".$ans."' means '".$trueanswer1."'</h3>
                         <form action='../en/subpages/en.word.practice.random.php' method='get'>
                             <input class='actionButton1' type='submit' name='' value='Next!'>
                         </form>
@@ -642,14 +697,19 @@ class Connection {
                 echo "<!doctype html>
                     <html>
                     <head>
-                    <link rel='stylesheet' href='../assets/common.stylesheet.css'>
-                    <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <link rel='stylesheet' href='../../assets/common.stylesheet.css'>
+                    <link rel='shortcut icon' href='../../Project-JStA/wip/logo/index_logo.png'/>
+                    <script src='../../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                    <script src='../../scripts/back.js'></script>
+                    <title>JStA Word practice</title>
                     </head>
                     <body>";
                         echo "<div align='center'>
                         <h2>Wrong answer!</h2>
                         <br>
-                        <h3>".$beans." means ".$trueanswer1."</h3>
+                        <h3>'".$beans."' means '".$trueanswer1."'</h3>
                         <form action='../en/subpages/en.word.practice.random.php' method='get'>
                             <input class='actionButton1' type='submit' name='' value='Next!'>
                         </form>
@@ -662,4 +722,3 @@ class Connection {
         
     }
 }
-    

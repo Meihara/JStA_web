@@ -5,5 +5,11 @@ FIXED IN UPDATE 1.4{
 --4. special characters in username ('')
 --5. password can be read when using ' in username (move hash phase to handler script)
 }
-6. refresh needed after pressing back button on dictionary page and game page when not logged in
-7. back button does not work in random words game
+FIXED IN UPDATE 2.0{
+--7. back button does not work in random words game
+--9. hungarian dashboard 'szótár' button is broken and will not redirect the user properly
+--10. hungarian dashboard 'tudod a szót' button is broken and will not redirect the user properly
+}
+6. refresh needed after pressing back button on dictionary page and game page when not logged in and also when logged in
+8. going back from guest dashboard to index requires a refresh, and continous spamming of browser back breaks the webpage
+11. special characters are not disables in random word game
