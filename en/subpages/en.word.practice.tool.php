@@ -20,7 +20,7 @@ $conn = new Connection();
 </head>
     <div align="center">
         <form action="en.word.practice.random.php" name="userSettings" method="post">
-            <input class="actionButton2" type="submit" name="" value="Word practice tool">
+            <input class="actionButton2" type="submit" name="" value="Do you know the word? (game)">
         </form>
     </div>
     <div align="center">

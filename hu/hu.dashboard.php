@@ -28,7 +28,7 @@ $conn = new Connection();
     </div>
     <div align="center">
         <form action="subpages/hu.user.settings.php" name="userSettings" method="post">
-            <input class="settingsButtonHu" type="submit" name="" value="Felhasználói beálítások">
+            <input class="settingsButtonHu" type="submit" name="" value="Felhasználói beállítások">
         </form>
     </div>
     <br>

@@ -1,7 +1,7 @@
 <?php session_start();
     if(isset($_SESSION["logged-in"])){
         if($_SESSION["logged-in"] == true){
-            if($_SESSION["lang"] == 1){
+            if($_SESSION["lang"] == 0){
             header("Location: ../../en/subpages/en.dictionary.php");
             }
         }
