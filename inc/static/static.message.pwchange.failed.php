@@ -8,7 +8,7 @@ echo "<!doctype html>
         <body>";
         if($langL == 0){
             echo "<div align='center'>
-            <h2>Failed to update password!</h2>
+            <h2>Failed to update username!</h2>
             <h3>Username or password not correct! <br>Please try again.</h3>
             <br>
             <form action='../en/subpages/en.user.settings.php' method='get'>
@@ -20,7 +20,7 @@ echo "<!doctype html>
         }
         else {
             echo "<div align='center'>
-            <h2>Jelszófrissítés sikertelen!</h2>
+            <h2>Felhasználónév frissítése sikertelen!</h2>
             <h3>Felhasználónév vagy jelszó téves!<br>Próbáld újra.</h3>
             <br>
             <form action='../hu/subpages/hu.user.settings.php' method='get'>

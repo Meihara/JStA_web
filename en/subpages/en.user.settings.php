@@ -25,8 +25,8 @@ $conn = new Connection();
 </head>
     
     <div align="center">
-        <h2>Your prefered language English.</h2>
-        <h3>If you wish to change it, please select a new language and press update.</h3>
+        <h2>Your prefered language is English.</h2>
+        <h3>If you wish to change it, please select a new language and press Update.</h3>
         <form action="../../inc/inc.lang.updater.php" name="userSettingsLang" method="post">
             <select class="signupLangSelect1" name='changeLang' size="1">
             <option value='' disabled selected>---</option>
@@ -41,7 +41,7 @@ $conn = new Connection();
     </div>
     <div align="center">
         <h2>Change your password!</h2>
-        <h3>If you wish to change it, enter your username as well as your previous password<br>and a new password, then press the Update button below.</h3>
+        <h3>If you wish to change it, enter your username as well as your current password<br>and a new password, then press the Update button below.</h3>
         <form action="../../inc/inc.password.updater.php" name="userSettingsPw" method="post">
             <input type="text" name="username" placeholder="Username" onkeyup="valid(this)" onblur="valid(this)" maxlength="36">
             <br>
@@ -49,6 +49,19 @@ $conn = new Connection();
             <br>
             <input type="password" name="pwNew" placeholder="New password" maxlength="36">
             <br>
+            <input class="actionButton1" type="submit" name="" value="Update!">
+        </form>
+    </div>
+	<div align="center">
+        <h2>Change your username!</h2>
+        <h3>If you wish to change it, enter your current username as well as your password<br>and a new username, then press the Update button below.</h3>
+        <form action="../../inc/inc.username.updater.php" name="userSettingsUid" method="post">
+            <input type="text" name="uidOld" placeholder="Old username" onkeyup="valid(this)" onblur="valid(this)" maxlength="36">
+            <br>
+            <input type="text" name="uidNew" placeholder="New username" onkeyup="valid(this)" onblur="valid(this)" maxlength="36">
+            <br>
+			<input type="password" name="pw" placeholder="Password" maxlength="36">
+			<br>
             <input class="actionButton1" type="submit" name="" value="Update!">
         </form>
     </div>

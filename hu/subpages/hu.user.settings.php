@@ -26,7 +26,7 @@ $conn = new Connection();
     
     <div align="center">
         <h2>Az alapértelmezett nyelved Magyar.</h2>
-        <h3>Amennziben szeretnéd megváltoztatni, kérlek válassz új nyelvet, és kattints a Frissítés gombra.</h3>
+        <h3>Amennyiben szeretnéd megváltoztatni, kérlek válassz új nyelvet, és kattints a Frissítés gombra.</h3>
         <form action="../../inc/inc.lang.updater.php" name="userSettings" method="post">
             <select class="signupLangSelect1" name='changeLang' size="1">
             <option value='' disabled selected>---</option>
@@ -51,6 +51,19 @@ $conn = new Connection();
         </form>
     </div>
     <br>
+	<div align="center">
+        <h2>Felhasználónév megváltoztatása!</h2>
+        <h3>Amennyiben meg kívánod változtatni a felhasználónevedet, ird be a jelenlegi felhasználóneved, kívánt jövőbeli felhasználónevedet,<br> és jelszavad, majd kattints a Frissítés gombra!</h3>
+        <form action="../../inc/inc.username.updater.php" name="userSettingsUid" method="post">
+            <input type="text" name="uidOld" placeholder="Régi felhasználónév" onkeyup="valid(this)" onblur="valid(this)" maxlength="36">
+            <br>
+            <input type="text" name="uidNew" placeholder="Új felhasználónév" onkeyup="valid(this)" onblur="valid(this)" maxlength="36">
+            <br>
+			<input type="password" name="pw" placeholder="Jelszó" maxlength="36">
+			<br>
+            <input class="actionButton1" type="submit" name="" value="Update!">
+        </form>
+    </div>
 <body>
 </body>
 </html>

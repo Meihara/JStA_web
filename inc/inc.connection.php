@@ -86,6 +86,35 @@ class Connection {
         }
          
     }
+	
+	function updateUsername($uidOld, $uidNew, $pw) {
+		$conn = $this->connect();
+		$langL = $_SESSION['lang'];
+		$sqlCheckNameExists = "SELECT id, name, pw, prefLang FROM users WHERE name='$uidNew'";
+		$result = $conn->query($sqlCheckNameExists);
+        if(mysqli_num_rows($result) > 0){
+            require "static/static.message.uid.change.error.exists.php";
+		}
+		else{
+			$sqlVerify = "SELECT id, name, pw, prefLang FROM users WHERE name='$uidOld'";
+        	$result = $conn->query($sqlVerify);
+        	while ($row = $result->fetch_assoc()) {
+            	$hashedPwd = $row['pw'];
+            	$where = $row['id'];
+        	}
+        	if (password_verify($pw, $hashedPwd)) {
+            	$sql = "UPDATE users SET name = '$uidNew' WHERE id = '$where'";
+            	$conn->query($sql);
+            	//$langL = $_SESSION['lang'];
+            	session_unset();
+            	session_destroy();
+            	require "static/static.message.uidchanged.php";
+        	}
+			else {
+            	require "static/static.message.uidchange.failed.php";
+        	}
+		}
+	}
     
     function dictionaryFillEn() {
         $conn = $this->connect();
