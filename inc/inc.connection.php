@@ -750,7 +750,7 @@ class Connection {
     
         
     }
-    #felkesz funkcio!
+
     function hiraganaSubPageAssembler($kanaID) {
         $conn = $this->connect();
         $output = "<!doctype html>
@@ -809,6 +809,11 @@ class Connection {
                         $user_note_text = $row['user_note'];
                         $fetchNoteRun = false;
                         $output .= "<p>".$user_note_text."</p>";
+                        $output .= "<form action='../../inc.add.user.note.php' name='updateUserNote' method='post'>
+                            <input class='actionButton2' type='submit' name='' value='Update note'>
+                            <br>
+                            <input class='hiddenInput' type'text' name='noteValue' value='".$note_user."'>
+                            </form>";
                         }
                 if($fetchNoteRun) {
                     $output .= "<p>It appears that you dont have any notes recorded for this character yet.<br>
@@ -849,11 +854,16 @@ class Connection {
                         $user_note_text = $row['user_note'];
                         $fetchNoteRun = false;
                         $output .= "<p>".$user_note_text."</p>";
+                        $output .= "<form action='../../inc.add.user.note.php' name='updateUserNote' method='post'>
+                            <input class='actionButton2' type='submit' name='' value='Jegyzet frissítése'>
+                            <br>
+                            <input class='hiddenInput' type'text' name='noteValue' value='".$note_user."'>
+                            </form>";
                         }
                 if($fetchNoteRun) {
                     $output .= "<p>Úgy látszik, még nem hoztál létre jegyzetet ehhez a karakterhez.<br>
                                         Jegyzet létrehozásához kattints a <i>Jegyzet hozzáadása</i> gombra.</p>
-                                    <form action='inc.add.user.note.php' name='addUserNote' method='post'>
+                                    <form action='../../inc.add.user.note.php' name='addUserNote' method='post'>
                                     <input class='actionButton2' type='submit' name='' value='Jegyzet hozzáadása'><br>
                                     <input class='hiddenInput' type'text' name='noteValue' value='".$note_user."'>
                                     </form>";
@@ -907,5 +917,141 @@ class Connection {
         }
         echo $output;
         
+    }
+    
+    function readUserNote($noteWhere) {
+        $conn = $this->connect();
+        $output = '';
+        $fetchNoteRun = false;
+        $userID = $_SESSION['userID'];
+        $user_note_text = ' ';
+        if($_SESSION['lang'] == 0){
+            $userNote;
+            $sql = "SELECT * FROM hiragana WHERE note_uhi = '".$noteWhere."'";
+            $result = mysqli_query($conn, $sql);
+            while ($row = $result->fetch_assoc()) {
+                $kana = $row['kana_hi'];
+                $romaji = $row['roman-hi'];
+                $output .= "<!doctype html>
+                <html>
+                <head>
+                <link rel='stylesheet' href='../assets/common.stylesheet.css'>
+                <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                <script src='../scripts/back.js'></script>
+                <title>JStA Note creation ".$kana."</title>
+                </head>
+                <body>
+                <div align='center'>";
+                $sql2 = "SELECT * FROM user_notes WHERE uid = '$userID' AND note_index = '".$noteWhere."'";
+                    $result2 = mysqli_query($conn, $sql2);
+                    while ($row = $result2->fetch_assoc()) {
+                        $user_note_text = $row['user_note'];
+                        $fetchNoteRun = true;
+                    }
+                if($fetchNoteRun)
+                {
+                    $output .= "<form action='inc.submit.user.note.php' name='noteSubmit' method='post'>
+                                <textarea name='noteText' autofocus class='noteField1' type='text' value='' maxlength='65000' cols='200' rows='10'>".$user_note_text."</textarea>
+                                <br>
+                                <input class='actionButton1' type='submit' name='' value='Save note'>
+                                <br>
+                                <input class='hiddenInput' type='text' name='noteID' value='".$noteWhere."'>
+                                <input class='hiddenInput' type='text' name='wasThere' value='".$romaji."'>
+                                <input class='hiddenInput' type='text' name='isThere' value='true'>
+                                </form>";
+                }
+                else {
+                    $output .= "<form action='inc.submit.user.note.php' name='noteSubmit' method='post'>
+                                <input autofocus class='noteField1' type='text' value='' name='note' maxlength='65000' placeholder='Write your note...'>
+                                <br>
+                                <input class='actionButton1' type='submit' name='' value='Save note'>
+                                <br>
+                                <input class='hiddenInput' type='text' name='noteID' value='".$noteWhere."'>
+                                <input class='hiddenInput' type='text' name='wasThere' value='".$romaji."'>
+                                <input class='hiddenInput' type='text' name='isThere' value='false'>
+                                </form>";
+                }
+                $output .= "</div>
+                            </body>
+                            </html>";
+                }
+            }
+        else {
+            $userNote;
+            $sql = "SELECT * FROM hiragana WHERE note_uhi = '".$noteWhere."'";
+            $result = mysqli_query($conn, $sql);
+            while ($row = $result->fetch_assoc()) {
+                $kana = $row['kana_hi'];
+                $romaji = $row['roman_hi'];
+                $output .= "<!doctype html>
+                <html>
+                <head>
+                <link rel='stylesheet' href='../assets/common.stylesheet.css'>
+                <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                <script src='../scripts/back.js'></script>
+                <title>JStA Jegyzet készítés ".$kana."</title>
+                </head>
+                <body>
+                <div align='center'>";
+                $sql2 = "SELECT * FROM user_notes WHERE uid = '$userID' AND note_index = '".$noteWhere."'";
+                    $result2 = mysqli_query($conn, $sql2);
+                    while ($row = $result2->fetch_assoc()) {
+                        $user_note_text = $row['user_note'];
+                        $fetchNoteRun = true;
+                    }
+                if($fetchNoteRun)
+                {
+                    $output .= "<form action='inc.submit.user.note.php' name='noteSubmit' method='post'>
+                                <textarea name='noteText' autofocus class='noteField1' type='text' value='' maxlength='65000' cols='200' rows='10'>".$user_note_text."</textarea>
+                                <br>
+                                <input class='actionButton2' type='submit' name='' value='Jegyzet mentése'>
+                                <br>
+                                <input class='hiddenInput' type='text' name='noteID' value='".$noteWhere."'>
+                                <input class='hiddenInput' type='text' name='wasThere' value='".$romaji."'>
+                                <input class='hiddenInput' type='text' name='isThere' value='true'>
+                                </form>";
+                }
+                else {
+                    $output .= "<form action='inc.submit.user.note.php' name='noteSubmit' method='post'>
+                                <textarea name='noteText' autofocus class='noteField1' type='text' value='' maxlength='65000' cols='200' rows='10'placeholder='Jegyzet írása...'></textarea>
+                                <br>
+                                <input class='actionButton2' type='submit' name='' value='Jegyzet mentése'>
+                                <br>
+                                <input class='hiddenInput' type='text' name='noteID' value='".$noteWhere."'>
+                                <input class='hiddenInput' type='text' name='wasThere' value='".$romaji."'>
+                                <input class='hiddenInput' type='text' name='isThere' value='false'>
+                                </form>";
+                }
+                $output .= "</div>
+                            </body>
+                            </html>";
+                }
+        }
+        echo $output;
+        
+    }
+    
+    function writeUserNote($noteWhere, $noteText, $wasThere, $isThere) {
+        $conn = $this->connect();
+		$langL = $_SESSION['lang'];
+        $userID = $_SESSION['userID'];
+        /*echo " userID ".$userID;
+        echo " note_index ".$noteWhere;
+        echo " note ".$noteText."<br>";*/
+        $sqlCheckNoteExists = "SELECT * FROM user_notes WHERE uid='".$userID."' AND note_index = '".$noteWhere."'";
+		$result = $conn->query($sqlCheckNoteExists);
+        if(mysqli_num_rows($result) > 0){
+            $sqlUpdate = "UPDATE `user_notes` SET `uid`='".$userID."',`note_index`='".$noteWhere."',`user_note`='".$noteText."' WHERE uid='".$userID."' AND note_index = '".$noteWhere."'";
+            /*echo $sqlUpdate;*/
+            $conn->query($sqlUpdate);
+            /*echo "<br>updated";*/
+		}
+        else {
+            $sqlInsert = "INSERT INTO `user_notes`(`id`, `uid`, `note_index`, `user_note`) VALUES (null , '".$userID."', '".$noteWhere."','".$noteText."')";
+            /*echo $sqlInsert;*/
+            $conn->query($sqlInsert);
+            /*echo "<br>inserted";*/
+        }
+        header("Location: kana/hiragana/inc.kana.hiragana.redirect.".$wasThere.".php");
     }
 }

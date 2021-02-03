@@ -24,6 +24,7 @@ $conn = new Connection();
         <div align="center">
         <button class="actionButton1" onclick="goBack()">Back</button>
         </div>
+        <h3>Click on a character for more details.</h3>
     <table class="kana_tables">
         <caption><h1>Hiragana table</h1></caption>
   <tr>

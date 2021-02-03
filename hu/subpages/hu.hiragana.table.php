@@ -24,6 +24,7 @@ $conn = new Connection();
         <div align="center">
         <button class="actionButton1" onclick="goBack()">Vissza</button>
         </div>
+        <h3>Részletes információkért kattint rá az adott karakterre.</h3>
     <table class="kana_tables">
         <caption><h1>Hiragana tábla</h1></caption>
   <tr>
