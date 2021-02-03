@@ -22,6 +22,7 @@ $conn = new Connection();
             <input class="actionButton2" type="submit" name="" value="Regisztrálás">
         </form>
     </div>
+    
 <body>
 </body>
 </html>

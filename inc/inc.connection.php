@@ -750,4 +750,162 @@ class Connection {
     
         
     }
+    #felkesz funkcio!
+    function hiraganaSubPageAssembler($kanaID) {
+        $conn = $this->connect();
+        $output = "<!doctype html>
+        <html>
+        <head>
+        <link rel='stylesheet' href='../../../assets/common.stylesheet.css'>
+        <link rel='shortcut icon' href='../../../Project-JStA/wip/logo/index_logo.png'/>
+        <script src='../../../scripts/back.js'></script>
+        <title>JStA Hiragana ".$kanaID."</title>
+        </head>
+        <body>";
+        if(isset($_SESSION["logged-in"])){
+        $fetchNoteRun = true;
+        $hiragana = '';
+        $romaji = '';
+        $note_hu = '';
+        $note_en = '';
+        $learn = '';
+        $note_user = '';
+        $rowid = '';
+        $modifier = '';
+        $userID = $_SESSION['userID'];
+        $learn_image = "../../../assets/pic/hiragana/".$kanaID.".png";
+        $stroke_image = "../../../assets/pic/hiragana/".$kanaID."stroke.png";
+        $sql = "SELECT * FROM hiragana WHERE roman_hi = '".$kanaID."'";
+        $output .= "<div align='center'>";
+        
+        
+        $result = mysqli_query($conn, $sql);
+            try{
+        while ($row = $result->fetch_assoc()) {
+            $hardID = $row['id_hi'];
+            $hiragana = $row['kana_hi'];
+            $romaji = $row['roman_hi'];
+            $note_hu = $row['note_hi'];
+            $note_en = $row['note_ehi'];
+            $learn = $row['learn_hi'];
+            $note_user = $row['note_uhi'];
+            $rowid = $row['row_hi'];
+            $modifier = $row['mod_hi'];
+            $output .= "<h1>Hiragana ".$hiragana." (".$kanaID.")</h1>";
+            $output .= "<img src='".$learn_image."' class='image_kana_learn'>";
+            $output .= "<img src='".$stroke_image."' class='image_kana_stroke'>";
+            
+            if($_SESSION['lang'] == 0){
+            $output .= "<h3>This may help you learn this Hiragana character:</h3>";
+            $output .= "<p>".$learn."</p><br>";
+            if($note_en != ' '){
+                $output .= "<h3>Some useful information about this Hiragana character:</h3>";
+                $output .= "<p>".$note_en."</p><br>";
+            }
+            $output .= "<h3>Your notes:</h3>";
+                $sql2 = "SELECT * FROM user_notes WHERE uid = '$userID' AND note_index = '".$note_user."'";
+                $result2 = mysqli_query($conn, $sql2);
+                while ($row = $result2->fetch_assoc()) {
+                        $user_note_text = $row['user_note'];
+                        $fetchNoteRun = false;
+                        $output .= "<p>".$user_note_text."</p>";
+                        }
+                if($fetchNoteRun) {
+                    $output .= "<p>It appears that you dont have any notes recorded for this character yet.<br>
+                                        To add a note, please click on the button below.</p>
+                                    <form action='inc.add.user.note.php' name='addUserNote' method='post'>
+                                    <input class='actionButton1' type='submit' name='' value='Add note'><br>
+                                    <input class='hiddenInput' type'text' name='noteValue' value='".$note_user."'>
+                                    </form>";
+                }
+                $output .= "<h3>Other parameters of this syllable:</h3>";
+                $output .= "<p>Part of the ";
+                if($rowid = "-"){
+                    $output .= "base";
+                }
+                else{
+                    $output .= $rowid;
+                }
+                $output .= " row in the Hiragana table.</p>";
+                if($modifier != "-"){
+                $output .= "<p>It is a modified version of a base character in the ".$rowid." row.</p>";
+                }
+                $output .= "<div align='center'>
+        <button class='actionButton1' onclick='goBackOne()'>Back</button>
+        </div>";
+                $output .= "</div>
+                </body>
+            </html>";
+        }
+        else {
+            if($note_en != ' '){
+                $output .= "<h3>Néhány hasznos információ erről a karakterről:</h3>";
+                $output .= "<p>".$note_hu."</p><br>";
+            }
+            $output .= "<h3>Saját jegyzetek:</h3>";
+                $sql2 = "SELECT * FROM user_notes WHERE uid = '$userID' AND note_index = '".$note_user."'";
+                $result2 = mysqli_query($conn, $sql2);
+                while ($row = $result2->fetch_assoc()) {
+                        $user_note_text = $row['user_note'];
+                        $fetchNoteRun = false;
+                        $output .= "<p>".$user_note_text."</p>";
+                        }
+                if($fetchNoteRun) {
+                    $output .= "<p>Úgy látszik, még nem hoztál létre jegyzetet ehhez a karakterhez.<br>
+                                        Jegyzet létrehozásához kattints a <i>Jegyzet hozzáadása</i> gombra.</p>
+                                    <form action='inc.add.user.note.php' name='addUserNote' method='post'>
+                                    <input class='actionButton2' type='submit' name='' value='Jegyzet hozzáadása'><br>
+                                    <input class='hiddenInput' type'text' name='noteValue' value='".$note_user."'>
+                                    </form>";
+                }
+                $output .= "<h3>Egyéb adatai ennek a karakternek:</h3>";
+                $output .= "<p>A(z) ";
+                if($rowid = "-"){
+                    $output .= "alap";
+                }
+                else{
+                    $output .= $rowid;
+                }
+                $output .= " sor része a Hiragana táblában.</p>";
+                if($modifier != "-"){
+                $output .= "<p>Egy ".$rowid." sorba tartozó karakter módosított változata.</p>";
+                }
+            $output .= "<div align='center'>
+        <button class='actionButton1' onclick='goBackOne()'>Viszza</button>
+        </div>";
+            $output .= "</div>
+                </body>
+            </html>";
+            
+        }
+        }
+            }
+            catch (Exception $e) {
+                echo "Something went wrong!<br>
+                If the problem persists, please submit a bug ticket on discord ( ) in the 'bugreport' chatroom <br> 
+                where you describe what were you trying to do in as much detail as possible (for example: location, internet connection and other information you may find useful).<br>
+                Please make sure to include the following error code AS IS!:<br>";
+                echo $e;
+            }
+            
+        
+        }
+        else {
+            $output .= "<div align='center'>
+            <h2>You are not logged in!</h2><br>
+                            <h3>To access this feature, you have to be logged in!</h3>
+                            <form action='../../../inc/inc.login.php' name='loginRedirect' method='post'>
+                            <input class='actionButton1' type='submit' name='' value='Log In'>
+                            </form>
+                                    
+                            <form action='../../../inc/inc.signup.php' name='registerRedirect' method='post'>
+                            <input class='actionButton1' type='submit' name='' value='Register'>
+                            </form>
+                            </div>
+                </body>
+            </html>";
+        }
+        echo $output;
+        
+    }
 }

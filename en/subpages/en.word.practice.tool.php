@@ -19,13 +19,18 @@ $conn = new Connection();
     <title>JStA Word practice</title>
 </head>
     <div align="center">
-        <form action="en.word.practice.random.php" name="userSettings" method="post">
+        <form action="en.word.practice.random.php" name="doUKnowTheWord" method="post">
             <input class="actionButton2" type="submit" name="" value="Do you know the word? (game)">
         </form>
     </div>
     <div align="center">
-        <form action="en.dictionary.php" name="userSettings" method="post">
+        <form action="en.dictionary.php" name="dictionary" method="post">
             <input class="actionButton1" type="submit" name="" value="Dictionary">
+        </form>
+    </div>
+    <div align="center">
+        <form action="en.hiragana.table.php" name="hiraganTable" method="post">
+            <input class="actionButton1" type="submit" name="" value="Hiragana table">
         </form>
     </div>
     <br>

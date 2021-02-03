@@ -19,13 +19,18 @@ $conn = new Connection();
     <title>JStA Szógyakorlás</title>
 </head>
     <div align="center">
-        <form action="hu.word.practice.random.php" name="userSettings" method="post">
+        <form action="hu.word.practice.random.php" name="doUKnowTheWord" method="post">
             <input class="actionButton2" type="submit" name="" value="Tudod a szót? (játék)">
         </form>
     </div>
     <div align="center">
-        <form action="hu.dictionary.php" name="userSettings" method="post">
+        <form action="hu.dictionary.php" name="dictionary" method="post">
             <input class="actionButton1" type="submit" name="" value="Szótár">
+        </form>
+    </div>
+    <div align="center">
+        <form action="hu.hiragana.table.php" name="hiraganTable" method="post">
+            <input class="actionButton1" type="submit" name="" value="Hiragana tábla">
         </form>
     </div>
     <br>
