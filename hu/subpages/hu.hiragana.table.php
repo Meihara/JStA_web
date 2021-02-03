@@ -22,7 +22,9 @@ $conn = new Connection();
 </head>
     <div align="center">
         <div align="center">
-        <button class="actionButton1" onclick="goBack()">Vissza</button>
+            <form action='hu.word.practice.tool.php'>
+                <input class='actionButton1' type='submit' name='' value='Vissza'><br>
+            </form>
         </div>
         <h3>Részletes információkért kattint rá az adott karakterre.</h3>
     <table class="kana_tables">

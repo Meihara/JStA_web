@@ -836,8 +836,10 @@ class Connection {
                 $output .= "<p>It is a modified version of a base character in the ".$rowid." row.</p>";
                 }
                 $output .= "<div align='center'>
-        <button class='actionButton1' onclick='goBackOne()'>Back</button>
-        </div>";
+                    <form action='../../../en/subpages/en.hiragana.table.php'>
+                        <input class='actionButton1' type='submit' name='' value='Back'><br>
+                    </form>
+                </div>";
                 $output .= "</div>
                 </body>
             </html>";
@@ -881,8 +883,10 @@ class Connection {
                 $output .= "<p>Egy ".$rowid." sorba tartozó karakter módosított változata.</p>";
                 }
             $output .= "<div align='center'>
-        <button class='actionButton1' onclick='goBackOne()'>Viszza</button>
-        </div>";
+            <form action='../../../hu/subpages/hu.hiragana.table.php'>
+            <input class='actionButton1' type='submit' name='' value='Vissza'><br>
+            </form>
+            </div>";
             $output .= "</div>
                 </body>
             </html>";
@@ -931,7 +935,7 @@ class Connection {
             $result = mysqli_query($conn, $sql);
             while ($row = $result->fetch_assoc()) {
                 $kana = $row['kana_hi'];
-                $romaji = $row['roman-hi'];
+                $romaji = $row['roman_hi'];
                 $output .= "<!doctype html>
                 <html>
                 <head>

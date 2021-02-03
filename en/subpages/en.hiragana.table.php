@@ -22,7 +22,9 @@ $conn = new Connection();
 </head>
     <div align="center">
         <div align="center">
-        <button class="actionButton1" onclick="goBack()">Back</button>
+            <form action='en.word.practice.tool.php'>
+                <input class='actionButton1' type='submit' name='' value='Back'><br>
+            </form>
         </div>
         <h3>Click on a character for more details.</h3>
     <table class="kana_tables">
