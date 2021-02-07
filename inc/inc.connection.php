@@ -750,7 +750,7 @@ class Connection {
     
         
     }
-
+#felkesz fuggveny \/ (megoldas: session for not-logged-in users)
     function hiraganaSubPageAssembler($kanaID) {
         $conn = $this->connect();
         $output = "<!doctype html>
@@ -1037,25 +1037,28 @@ class Connection {
     
     function writeUserNote($noteWhere, $noteText, $wasThere, $isThere) {
         $conn = $this->connect();
+        $noteTextLocal = mysqli_real_escape_string($conn, $noteText);
 		$langL = $_SESSION['lang'];
         $userID = $_SESSION['userID'];
+        /*echo $noteTextLocal;*/
         /*echo " userID ".$userID;
         echo " note_index ".$noteWhere;
         echo " note ".$noteText."<br>";*/
         $sqlCheckNoteExists = "SELECT * FROM user_notes WHERE uid='".$userID."' AND note_index = '".$noteWhere."'";
 		$result = $conn->query($sqlCheckNoteExists);
         if(mysqli_num_rows($result) > 0){
-            $sqlUpdate = "UPDATE `user_notes` SET `uid`='".$userID."',`note_index`='".$noteWhere."',`user_note`='".$noteText."' WHERE uid='".$userID."' AND note_index = '".$noteWhere."'";
+            $sqlUpdate = "UPDATE `user_notes` SET `uid`='".$userID."',`note_index`='".$noteWhere."',`user_note`='".$noteTextLocal."' WHERE uid='".$userID."' AND note_index = '".$noteWhere."'";
             /*echo $sqlUpdate;*/
             $conn->query($sqlUpdate);
             /*echo "<br>updated";*/
 		}
         else {
-            $sqlInsert = "INSERT INTO `user_notes`(`id`, `uid`, `note_index`, `user_note`) VALUES (null , '".$userID."', '".$noteWhere."','".$noteText."')";
+            $sqlInsert = "INSERT INTO `user_notes`(`id`, `uid`, `note_index`, `user_note`) VALUES (null , '".$userID."', '".$noteWhere."','".$noteTextLocal."')";
             /*echo $sqlInsert;*/
             $conn->query($sqlInsert);
             /*echo "<br>inserted";*/
         }
+        
         header("Location: kana/hiragana/inc.kana.hiragana.redirect.".$wasThere.".php");
     }
 }

@@ -21,7 +21,7 @@ $conn = new Connection();
 </head>
     <div align="center">
         <div align="center">
-        <button class="actionButton1" onclick="goBack()">Vissza</button>
+        <button class="actionButton1" onclick="goBackOne()">Vissza</button>
         </div>
     <table style="width:85%">
   <tr>

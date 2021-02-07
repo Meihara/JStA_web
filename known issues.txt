@@ -10,6 +10,15 @@ FIXED IN UPDATE 2.0{
 --9. hungarian dashboard 'szótár' button is broken and will not redirect the user properly
 --10. hungarian dashboard 'tudod a szót' button is broken and will not redirect the user properly
 }
+FIXED IN PATCH 2.2.1.{
+11. special characters are not disables in random word game -> they present no risk to the database now
+13. 'add note' textfield in hiragana subpages is not protected against SQL INJECTION 
+16. hungarian version of 'do you know the word?' cannot be reached (404 error)
+17. hungarian user settings page button shows english text
+18. back button on dictionary page now redirects the user to word practice main page instead of user dashboard
+}
 6. refresh needed after pressing back button on dictionary page and game page when not logged in and also when logged in
-8. going back from guest dashboard to index requires a refresh, and continous spamming of browser back breaks the webpage
-11. special characters are not disables in random word game
+8. going back from guest dashboard to index requires a refresh, and continous spamming of browser back sometimes breaks the webpage
+12. some syllable subpage in hiragana mode has its pictures missing
+14. UI is not displayed properly on mobile devices
+15. 'Not logged in' warning when a not logged in user tries to open hiragana subpages is displayed in English even if the user selected hungarian as language

@@ -61,7 +61,7 @@ $conn = new Connection();
             <br>
 			<input type="password" name="pw" placeholder="Jelszó" maxlength="36">
 			<br>
-            <input class="actionButton1" type="submit" name="" value="Update!">
+            <input class="actionButton1" type="submit" name="" value="Frissítés!">
         </form>
     </div>
 <body>

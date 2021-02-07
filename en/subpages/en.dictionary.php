@@ -20,7 +20,7 @@ $conn = new Connection();
     <title>JStA Dictionary</title>
 </head>
     <div align="center">
-        <button class="actionButton1" onclick="goBack()">Back</button>
+        <button class="actionButton1" onclick="goBackOne()">Back</button>
     </div>
     <div align="center">
     <table style="width:85%">
