@@ -10,7 +10,7 @@ FIXED IN UPDATE 2.0{
 --9. hungarian dashboard 'szótár' button is broken and will not redirect the user properly
 --10. hungarian dashboard 'tudod a szót' button is broken and will not redirect the user properly
 }
-FIXED IN PATCH 2.2.1.{
+FIXED IN PATCH 2.2.1.83{
 11. special characters are not disables in random word game -> they present no risk to the database now
 13. 'add note' textfield in hiragana subpages is not protected against SQL INJECTION 
 16. hungarian version of 'do you know the word?' cannot be reached (404 error)

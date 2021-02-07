@@ -825,15 +825,15 @@ class Connection {
                 }
                 $output .= "<h3>Other parameters of this syllable:</h3>";
                 $output .= "<p>Part of the ";
-                if($rowid = "-"){
-                    $output .= "base";
+                if($rowid != "-"){
+                    $output .= $rowid;
                 }
                 else{
-                    $output .= $rowid;
+                    $output .= "base";
                 }
                 $output .= " row in the Hiragana table.</p>";
                 if($modifier != "-"){
-                $output .= "<p>It is a modified version of a base character in the ".$rowid." row.</p>";
+                $output .= "<p>It is a modified version of a base character in the ".$modifier." row.</p>";
                 }
                 $output .= "<div align='center'>
                     <form action='../../../en/subpages/en.hiragana.table.php'>
@@ -872,15 +872,15 @@ class Connection {
                 }
                 $output .= "<h3>Egyéb adatai ennek a karakternek:</h3>";
                 $output .= "<p>A(z) ";
-                if($rowid = "-"){
-                    $output .= "alap";
+                if($rowid != "-"){
+                    $output .= $rowid;
                 }
                 else{
-                    $output .= $rowid;
+                    $output .= "alap";
                 }
                 $output .= " sor része a Hiragana táblában.</p>";
                 if($modifier != "-"){
-                $output .= "<p>Egy ".$rowid." sorba tartozó karakter módosított változata.</p>";
+                $output .= "<p>Egy '".$modifier."' sorba tartozó karakter módosított változata.</p>";
                 }
             $output .= "<div align='center'>
             <form action='../../../hu/subpages/hu.hiragana.table.php'>

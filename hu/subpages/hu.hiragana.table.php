@@ -81,7 +81,7 @@ $conn = new Connection();
     <th>h</th>
     <th><a href="../../inc/kana/hiragana/inc.kana.hiragana.redirect.ha.php">は</a></th>
     <th><a href="../../inc/kana/hiragana/inc.kana.hiragana.redirect.hi.php">ひ</a></th> 
-    <th><a href="../../inc/kana/hiragana/inc.kana.hiragana.redirect.hu.php">ふ<sub>fu</sub></a></th>
+    <th><a href="../../inc/kana/hiragana/inc.kana.hiragana.redirect.fu.php">ふ<sub>fu</sub></a></th>
     <th><a href="../../inc/kana/hiragana/inc.kana.hiragana.redirect.he.php">へ</a></th>
     <th><a href="../../inc/kana/hiragana/inc.kana.hiragana.redirect.ho.php">ほ</a></th>
   </tr>
