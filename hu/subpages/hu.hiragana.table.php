@@ -26,7 +26,7 @@ $conn = new Connection();
                 <input class='actionButton1' type='submit' name='' value='Vissza'><br>
             </form>
         </div>
-        <h3>Részletes információkért kattint rá az adott karakterre.</h3>
+        <h3>Részletes információkért kattints rá az adott karakterre.</h3>
     <table class="kana_tables">
         <caption><h1>Hiragana tábla</h1></caption>
   <tr>

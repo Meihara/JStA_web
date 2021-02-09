@@ -22,3 +22,4 @@ FIXED IN PATCH 2.2.1.83{
 12. some syllable subpage in hiragana mode has its pictures missing
 14. UI is not displayed properly on mobile devices
 15. 'Not logged in' warning when a not logged in user tries to open hiragana subpages is displayed in English even if the user selected hungarian as language
+16. message now properly shows up when failing to update password, and debug message is now hidden

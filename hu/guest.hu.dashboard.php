@@ -22,6 +22,12 @@ $conn = new Connection();
             <input class="actionButton2" type="submit" name="" value="Regisztrálás">
         </form>
     </div>
+    <br>
+    <div align="center">
+    <form action="../index.php" name="signUpForm" method="post">
+            <input class="actionButton2" type="submit" name="" value="Vissza a kezdőlapra">
+        </form>
+    </div>
     
 <body>
 </body>

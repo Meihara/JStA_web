@@ -7,7 +7,7 @@
         }
     }
 else {
-    header("Location: ../index.php");
+    header("Location: ../../index.php");
 }
 include "../../inc/inc.connection.php";
 $conn = new Connection();

@@ -7,7 +7,7 @@
         }
     }
 else {
-    header("Location: ../index.php");
+    header("Location: ../../index.php");
 }
 include "../../inc/inc.connection.php";
 $conn = new Connection();
@@ -57,10 +57,11 @@ $conn = new Connection();
         <form action="../../inc/inc.username.updater.php" name="userSettingsUid" method="post">
             <input type="text" name="uidOld" placeholder="Régi felhasználónév" onkeyup="valid(this)" onblur="valid(this)" maxlength="36">
             <br>
-            <input type="text" name="uidNew" placeholder="Új felhasználónév" onkeyup="valid(this)" onblur="valid(this)" maxlength="36">
-            <br>
 			<input type="password" name="pw" placeholder="Jelszó" maxlength="36">
 			<br>
+            <br>
+            <input type="text" name="uidNew" placeholder="Új felhasználónév" onkeyup="valid(this)" onblur="valid(this)" maxlength="36">
+            <br>
             <input class="actionButton1" type="submit" name="" value="Frissítés!">
         </form>
     </div>
