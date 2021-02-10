@@ -792,12 +792,17 @@ class Connection {
             $rowid = $row['row_hi'];
             $modifier = $row['mod_hi'];
             $output .= "<h1>Hiragana ".$hiragana." (".$kanaID.")</h1>";
-            $output .= "<img src='".$learn_image."' class='image_kana_learn'>";
-            $output .= "<img src='".$stroke_image."' class='image_kana_stroke'>";
+
             
             if($_SESSION['lang'] == 0){
+            if($modifier == "-"){
+                $output .= "<img src='".$learn_image."' alt='How to remember ".$hiragana."' class='image_kana_learn'>";
+                }
+                $output .= "<img src='".$stroke_image."' alt='Hiragana ".$hiragana." stroke order' class='image_kana_stroke'>";
+            if($learn != " "){
             $output .= "<h3>This may help you learn this Hiragana character:</h3>";
             $output .= "<p>".$learn."</p><br>";
+            }
             if($note_en != ' '){
                 $output .= "<h3>Some useful information about this Hiragana character:</h3>";
                 $output .= "<p>".$note_en."</p><br>";
@@ -845,6 +850,8 @@ class Connection {
             </html>";
         }
         else {
+            $output .= "<img src='".$stroke_image."' alt='Hiragana ".$hiragana." rajzolási sorrend' class='image_kana_stroke'>";
+            
             if($note_en != ' '){
                 $output .= "<h3>Néhány hasznos információ erről a karakterről:</h3>";
                 $output .= "<p>".$note_hu."</p><br>";

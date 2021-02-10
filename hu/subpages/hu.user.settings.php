@@ -34,6 +34,7 @@ $conn = new Connection();
             <option value="1">Magyar</option>
             </select>
             <br>
+            <br>
             <input class="actionButton1" type="submit" name="" value="Frissítés!">
         </form>
     </div>
@@ -45,7 +46,9 @@ $conn = new Connection();
             <br>
             <input type="password" name="pwOld" placeholder="Régi jelszó">
             <br>
+            <br>
             <input type="password" name="pwNew" placeholder="Új jelszó">
+            <br>
             <br>
             <input class="actionButton1" type="submit" name="" value="Frissítés!">
         </form>
@@ -62,7 +65,14 @@ $conn = new Connection();
             <br>
             <input type="text" name="uidNew" placeholder="Új felhasználónév" onkeyup="valid(this)" onblur="valid(this)" maxlength="36">
             <br>
+            <br>
             <input class="actionButton1" type="submit" name="" value="Frissítés!">
+        </form>
+    </div>
+    <br>
+    <div align="center">
+        <form action='../hu.dashboard.php'>
+                <input class='actionButton1' type='submit' name='' value='Vissza'><br>
         </form>
     </div>
 <body>

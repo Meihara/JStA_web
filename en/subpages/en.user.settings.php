@@ -34,6 +34,7 @@ $conn = new Connection();
             <option value="1">Magyar</option>
             </select>
             <br>
+            <br>
             <input class="actionButton1" type="submit" name="" value="Update!">
             <br>
             <input class="hiddenInput" type="text" name="page" value="../en/subpages/en.user.settings.php">
@@ -47,7 +48,9 @@ $conn = new Connection();
             <br>
             <input type="password" name="pwOld" placeholder="Old password" maxlength="36">
             <br>
+            <br>
             <input type="password" name="pwNew" placeholder="New password" maxlength="36">
+            <br>
             <br>
             <input class="actionButton1" type="submit" name="" value="Update!">
         </form>
@@ -58,13 +61,21 @@ $conn = new Connection();
         <form action="../../inc/inc.username.updater.php" name="userSettingsUid" method="post">
             <input type="text" name="uidOld" placeholder="Old username" onkeyup="valid(this)" onblur="valid(this)" maxlength="36">
             <br>
-            <input type="text" name="uidNew" placeholder="New username" onkeyup="valid(this)" onblur="valid(this)" maxlength="36">
-            <br>
 			<input type="password" name="pw" placeholder="Password" maxlength="36">
 			<br>
+            <br>
+            <input type="text" name="uidNew" placeholder="New username" onkeyup="valid(this)" onblur="valid(this)" maxlength="36">
+            <br>
+            <br>
             <input class="actionButton1" type="submit" name="" value="Update!">
         </form>
     </div>
+    <br>
+    <div align="center">
+    <form action='../en.dashboard.php'>
+                <input class='actionButton1' type='submit' name='' value='Back'><br>
+        </form>
+        </div>
     <br>
 <body>
 </body>
