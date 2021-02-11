@@ -76,5 +76,11 @@
     width:  15%;
     border-left-width: 0.5px;
 }
+.image_kana_strokeAlt{
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
+    width:  15%;
+}
 
 
