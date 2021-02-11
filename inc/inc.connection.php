@@ -122,7 +122,7 @@ class Connection {
         $output = ' ';
         $result = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_array($result)) {
-            $output .= '<tr><th>'.$row['id_word'].'</th><th class="th1">'.$row['kana_w'].'</th><th class="th1">'.$row['roman_w'].'</th>';
+            $output .= '<tr class="lineHIghlight"><th>'.$row['id_word'].'</th><th class="th1">'.$row['kana_w'].'</th><th class="th1">'.$row['roman_w'].'</th>';
             if($row['eng_w'] == $row['eng2_w']){
                 $output .= '<th class="th1">'.$row['eng_w'].'</th><th class="th1">---</th></tr>';
             }
@@ -139,7 +139,7 @@ class Connection {
         $output = ' ';
         $result = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_array($result)) {
-            $output .= '<tr><th>'.$row['id_word'].'</th><th class="th1">'.$row['kana_w'].'</th><th class="th1">'.$row['roman_w'].'</th>';
+            $output .= '<tr class="lineHIghlight"><th>'.$row['id_word'].'</th><th class="th1">'.$row['kana_w'].'</th><th class="th1">'.$row['roman_w'].'</th>';
             if($row['hun_w'] == $row['hun2_w']){
                 $output .= '<th class="th1">'.$row['hun_w'].'</th><th class="th1">---</th></tr>';
             }

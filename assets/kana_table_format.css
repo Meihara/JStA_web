@@ -24,3 +24,6 @@ a:link, a:visited {
     border-top-width: medium;
     padding-top: 2px;
 }
+a:hover{
+    background-color: darkgrey;
+}

@@ -51,6 +51,9 @@
 .th1 {
     text-align: left;
 }
+.lineHIghlight:hover{
+    background-color: darkgrey;
+}
 .kana_tables {
     width: 50%;
 }
