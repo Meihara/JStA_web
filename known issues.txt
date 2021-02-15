@@ -20,6 +20,10 @@ FIXED IN PATCH 2.2.1.83{
 FIXED IN PATCH 2.2.1.358 {
 12. some syllable subpage in hiragana mode has its pictures missing
 19. message now properly shows up when failing to update password, and debug message is now hidden
+22. missing characters are added to the hiragana database
+}
+FIXED IN PATCH 2.2.1.639{
+21. misalignment of pictures on hiragana sub-pages
 }
 6. refresh needed after pressing back button on dictionary page and game page when not logged in and also when logged in
 8. going back from guest dashboard to index requires a refresh, and continous spamming of browser back sometimes breaks the webpage

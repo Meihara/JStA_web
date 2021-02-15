@@ -22,10 +22,16 @@ $conn = new Connection();
     <title>JStA Dashboard</title>
 </head>
     <div align="center">
-        <form action="subpages/en.word.practice.tool.php" name="userSettings" method="post">
+        <form action="subpages/en.word.practice.tool.php" name="wordPractice" method="post">
             <input class="actionButton2" type="submit" name="" value="Word practice tool">
         </form>
     </div>
+    <div align="center">
+        <form action="subpages/en.kanji.tools.php" name="kanjiPractice" method="post">
+            <input class="actionButton2" type="submit" name="" value="Learn kanji">
+        </form>
+    </div>
+    <br>
     <div align="center">
         <form action="subpages/en.user.settings.php" name="userSettings" method="post">
             <input class="actionButton1" type="submit" name="" value="User settings">

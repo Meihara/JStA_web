@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+.tableKanji{
+    width: 80%;
+}
+.kanjiCell{
+    font-size: 40px;
+    border-top-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+}
+.hover:hover{
+    background-color: darkgrey;
+}
+.alignLeft{
+    text-align: left;
+}
+table, th, td {
+  /*border: 1px solid black;*/
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid black;
+    /*height: 15px;*/
+}
+.cellEnd{
+    padding-left: 4px;
+    border-top-width: 3px;
+    border-bottom-width: 3px;
+    border-right-width: 3px;
+    text-align: left;
+}
+.cellMiddle{
+    padding-left: 4px;
+    border-top-width: 3px;
+    border-bottom-width: 3px;
+    text-align: left;
+}
+.cellMiddleNoAlign{
+    border-top-width: 3px;
+    border-bottom-width: 3px;
+}
+

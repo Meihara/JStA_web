@@ -1071,4 +1071,138 @@ class Connection {
         
         header("Location: kana/hiragana/inc.kana.hiragana.redirect.".$wasThere.".php");
     }
+    
+    function kanjiListFill(){
+        $conn = $this->connect();
+        $sql = "SELECT * FROM kanji";
+        
+        /*$kanjiID;
+        $kanji;
+        $engMeaning;
+        $hunMeaning;
+        $engNote;
+        $hunNote;
+        $userNoteID;
+        $readingON;
+        $readingON2;
+        $romanizedON;
+        $romanizedON2;
+        $readingKUN;
+        $readingKUN2;
+        $romanizedKUN;
+        $romanizedKUN2;
+        $radical;
+        $strokeNumber;
+        $engComm;
+        $hunComm;*/
+        
+        $result = mysqli_query($conn, $sql);
+        /*while ($row = mysqli_fetch_array($result)) {
+            $kanjiID = $row['id'];
+            $kanji = $row['kanji'];
+            $engMeaning = $row['eng'];
+            $hunMeaning = $row['hun'];
+            $engNote = $row['note_kan'];
+            $hunNote = $row['note_hkan'];
+            $userNoteID = $row['note_ukan'];
+            $readingON = $row['read_on'];
+            $readingON2 = $row['read_on2'];
+            $romanizedON = $row['on_romanized_1'];
+            $romanizedON2 = $row['on_romanized_2'];
+            $readingKUN = $row['read_kun'];
+            $readingKUN2 = $row['read_kun2'];
+            $romanizedKUN = $row['kun_romanized_1'];
+            $romanizedKUN2 = $row['kun_romanized_2'];
+            $radical = $row['radical'];
+            $strokeNumber = $row['stroke_number'];
+            $engComm = $row['comm_en'];
+            $hunComm = $row['comm_hu'];
+        }*/
+        
+        if ($_SESSION['lang'] == 0){
+        $output = "<!doctype html>
+                    <html lang='en'>
+                        <head>
+                            <meta charset='UTF-8'>
+                            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                            <link rel='stylesheet' href='../assets/common.stylesheet.css'>
+                            <link rel='stylesheet' href='../assets/kanji_table_format.css'>
+                            <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                            <title>JStA Kanji list</title>
+                        </head>
+                    <div align='center'>
+                        <form action='../en/subpages/en.kanji.tools.php' name='back' method='post'>
+                            <input class='actionButton1' type='submit' name='' value='Back'>
+                        </form>
+                        <br>
+                        <table class='tableKanji'>
+                        <caption><h1>Kanji list</h1></caption>";
+            $output .= "<tr>
+                            <th><h2>Kajni</h2></th>
+                            <th><h2>Meaning</h2></th>
+                            <th><h2>Readings</h2></th> 
+                            <th><h2>Parameters</h2></th>
+                            <th><h2>Commons uses</h2></th>
+                        </tr>";
+            while($row = $result->fetch_assoc()){
+                $kanjiID = $row['id'];
+                $kanji = $row['kanji'];
+                $engMeaning = $row['eng'];
+                $hunMeaning = $row['hun'];
+                $engNote = $row['note_kan'];
+                $hunNote = $row['note_hkan'];
+                $userNoteID = $row['note_ukan'];
+                $readingON = $row['read_on'];
+                $readingON2 = $row['read_on2'];
+                $romanizedON = $row['on_romanized_1'];
+                $romanizedON2 = $row['on_romanized_2'];
+                $readingKUN = $row['read_kun'];
+                $readingKUN2 = $row['read_kun2'];
+                $romanizedKUN = $row['kun_romanized_1'];
+                $romanizedKUN2 = $row['kun_romanized_2'];
+                $radical = $row['radical'];
+                $strokeNumber = $row['stroke_number'];
+                $engComm = $row['comm_en'];
+                $hunComm = $row['comm_hu'];
+                
+                $readings = "";
+                if($readingON2 != " "){
+                    $readings .= "ON reading:<br>$readingON ($romanizedON), $readingON2 ($romanizedON2)<br>";
+                }
+                else{
+                    $readings .= "ON reading:<br>$readingON ($romanizedON)<br>";
+                }
+                if($readingKUN2 != " "){
+                    $readings .= "KUN reading:<br>$readingKUN ($romanizedKUN), $readingKUN2 ($romanizedKUN2)";
+                }
+                else{
+                    $readings .= "KUN reading: $readingKUN ($romanizedKUN)";
+                }
+                
+                $output .= "<tr class='hover'>
+                                <th class='kanjiCell'>$kanji</th>
+                                <th class='cellMiddleNoAlign'>$engMeaning</th>
+                                <th class='cellMiddle'>$readings</th>
+                                <th class='cellMiddle'>Radical: $radical<br>Strokes: $strokeNumber<br>Unique ID:$kanjiID</th>
+                                <th class='cellEnd'>$engComm</th>
+                            </tr>";   
+        }
+            echo $output;
+        }
+        else {
+            $output = "<!doctype html>
+                    <html lang='hu'>
+                        <head>
+                            <meta charset='UTF-8'>
+                            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                            <link rel='stylesheet' href='../assets/common.stylesheet.css'>
+                            <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                            <title>JStA Kanji lista</title>
+                        </head>
+                    <div align='center'>
+                        <form action='../hu/subpages/hu.kanji.tools.php' name='back' method='post'>
+                            <input class='actionButton1' type='submit' name='' value='Vissza'>
+                        </form>";
+        }
+    }
 }
