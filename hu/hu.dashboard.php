@@ -27,6 +27,12 @@ $conn = new Connection();
         </form>
     </div>
     <div align="center">
+        <form action="subpages/hu.kanji.tools.php" name="kanjiPractice" method="post">
+            <input class="actionButton2" type="submit" name="" value="Kanji tanulása">
+        </form>
+    </div>
+    <br>
+    <div align="center">
         <form action="subpages/hu.user.settings.php" name="userSettings" method="post">
             <input class="settingsButtonHu" type="submit" name="" value="Felhasználói beállítások">
         </form>

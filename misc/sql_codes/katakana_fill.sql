@@ -1,6 +1,6 @@
 INSERT INTO `katakana`(`id_ka`, `kana_ka`, `roman_ka`, `note_ka`, `note_eka`, `learn_ka`, `note_uka`, `row_ka`, `mod_ka`) VALUES (null,'ア','a','','','','ka0','-','-');
 INSERT INTO `katakana`(`id_ka`, `kana_ka`, `roman_ka`, `note_ka`, `note_eka`, `learn_ka`, `note_uka`, `row_ka`, `mod_ka`) VALUES (null,'イ','i','','','','ka1','-','-');
-INSERT INTO `katakana`(`id_ka`, `kana_ka`, `roman_ka`, `note_ka`, `note_eka`, `learn_ka`, `note_uka`, `row_ka`, `mod_ka`) VALUES (null,'ウ','u','','','','ka2','-','-');
+INSERT INTO `katakana`(`id_ka`, `kana_ka`, `roman_ka`, `note_ka`, `note_eka`, `learn_ka`, `note_uka`, `row_ka`, `mod_ka`) VALUES (null,'ウ','u','Ez a karakter írható dakutennel (\"), hogy a <strong>ヴ</strong> (V) karaktert<br>formázzuk belőle, de mivel a Japán nzelvben nincs\"V\" hang,<br>így ez valójában \"B\"-ként van kiejtve.','This character can have a dakuten (\") to form the character <strong>ヴ</strong>(V),<br> but since Japanese has no \"V\" sound, it is actually pronounced as \"B\".','','ka2','-','-');
 INSERT INTO `katakana`(`id_ka`, `kana_ka`, `roman_ka`, `note_ka`, `note_eka`, `learn_ka`, `note_uka`, `row_ka`, `mod_ka`) VALUES (null,'エ','e','','','','ka3','-','-');
 INSERT INTO `katakana`(`id_ka`, `kana_ka`, `roman_ka`, `note_ka`, `note_eka`, `learn_ka`, `note_uka`, `row_ka`, `mod_ka`) VALUES (null,'オ','o','','','','ka4','-','-');
 INSERT INTO `katakana`(`id_ka`, `kana_ka`, `roman_ka`, `note_ka`, `note_eka`, `learn_ka`, `note_uka`, `row_ka`, `mod_ka`) VALUES (null,'カ','ka','','','','ka5','k','-');
@@ -64,3 +64,8 @@ INSERT INTO `katakana`(`id_ka`, `kana_ka`, `roman_ka`, `note_ka`, `note_eka`, `l
 INSERT INTO `katakana`(`id_ka`, `kana_ka`, `roman_ka`, `note_ka`, `note_eka`, `learn_ka`, `note_uka`, `row_ka`, `mod_ka`) VALUES (null,'ワ','wa','','','','ka63','w','-');
 INSERT INTO `katakana`(`id_ka`, `kana_ka`, `roman_ka`, `note_ka`, `note_eka`, `learn_ka`, `note_uka`, `row_ka`, `mod_ka`) VALUES (null,'ヲ','wo','','','','ka64','w','-');
 INSERT INTO `katakana`(`id_ka`, `kana_ka`, `roman_ka`, `note_ka`, `note_eka`, `learn_ka`, `note_uka`, `row_ka`, `mod_ka`) VALUES (null,'ン','n','Az egyetlen egyedül álló mássalhangzó, kiejtése általában hasonló az "n" hanghoz.','The only consonant that stands without a vowel, its pronunciation is similar to the sound "n".','','ka65','-','-');
+INSERT INTO `katakana`(`id_ka`, `kana_ka`, `roman_ka`, `note_ka`, `note_eka`, `learn_ka`, `note_uka`, `row_ka`, `mod_ka`) VALUES (null,'マ','ma','','','','ka66','m','-');
+INSERT INTO `katakana`(`id_ka`, `kana_ka`, `roman_ka`, `note_ka`, `note_eka`, `learn_ka`, `note_uka`, `row_ka`, `mod_ka`) VALUES (null,'ミ','mi','','','','ka67','m','-');
+INSERT INTO `katakana`(`id_ka`, `kana_ka`, `roman_ka`, `note_ka`, `note_eka`, `learn_ka`, `note_uka`, `row_ka`, `mod_ka`) VALUES (null,'ム','mu','','','','ka68','m','-');
+INSERT INTO `katakana`(`id_ka`, `kana_ka`, `roman_ka`, `note_ka`, `note_eka`, `learn_ka`, `note_uka`, `row_ka`, `mod_ka`) VALUES (null,'メ','me','','','','ka69','m','-');
+INSERT INTO `katakana`(`id_ka`, `kana_ka`, `roman_ka`, `note_ka`, `note_eka`, `learn_ka`, `note_uka`, `row_ka`, `mod_ka`) VALUES (null,'モ','mo','','','','ka70','m','-');

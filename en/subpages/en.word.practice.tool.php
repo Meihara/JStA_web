@@ -35,6 +35,12 @@ $conn = new Connection();
     </div>
     <br>
     <div align="center">
+        <form action="../../inc/inc.user.dictionary.php" name="hiraganTable" method="post">
+            <input class="actionButton1" type="submit" name="" value="Your dictionary">
+        </form>
+    </div>
+    <br>
+    <div align="center">
         <form action="../../inc/inc.en.guest.back.home.php">
         <input class="actionButton1" type="submit" value="Back">
         </form>

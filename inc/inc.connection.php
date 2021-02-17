@@ -1072,52 +1072,49 @@ class Connection {
         header("Location: kana/hiragana/inc.kana.hiragana.redirect.".$wasThere.".php");
     }
     
+    function kanjiBasicsAssembler(){
+        if ($_SESSION['lang'] == 0){
+            $output = "<!doctype html>
+                    <html lang='en'>
+                        <head>
+                            <meta charset='UTF-8'>
+                            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                            <link rel='stylesheet' href='../assets/common.stylesheet.css'>
+                            <link rel='stylesheet' href='../assets/kanji_table_format.css'>
+                            <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                            <title>JStA Kanji list</title>
+                        </head>
+                        <div align='center'>
+                        <h1>This page is under construction!</h1>
+                        <form action='../en/subpages/en.kanji.tools.php' name='back' method='post'>
+                            <input class='actionButton1' type='submit' name='' value='Back'>
+                        </form>";
+            echo $output;
+        }
+        else{
+            $output = "<!doctype html>
+                    <html lang='hu'>
+                        <head>
+                            <meta charset='UTF-8'>
+                            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                            <link rel='stylesheet' href='../assets/common.stylesheet.css'>
+                            <link rel='stylesheet' href='../assets/kanji_table_format.css'>
+                            <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                            <title>JStA Kanji lista</title>
+                        </head>
+                    <div align='center'>
+                    <h1>Ez az oldal jelenleg nem elérhető!</h1>
+                        <form action='../hu/subpages/hu.kanji.tools.php' name='back' method='post'>
+                            <input class='actionButton1' type='submit' name='' value='Vissza'>
+                        </form>";
+            echo $output;
+        }
+    }
+    
     function kanjiListFill(){
         $conn = $this->connect();
         $sql = "SELECT * FROM kanji";
-        
-        /*$kanjiID;
-        $kanji;
-        $engMeaning;
-        $hunMeaning;
-        $engNote;
-        $hunNote;
-        $userNoteID;
-        $readingON;
-        $readingON2;
-        $romanizedON;
-        $romanizedON2;
-        $readingKUN;
-        $readingKUN2;
-        $romanizedKUN;
-        $romanizedKUN2;
-        $radical;
-        $strokeNumber;
-        $engComm;
-        $hunComm;*/
-        
         $result = mysqli_query($conn, $sql);
-        /*while ($row = mysqli_fetch_array($result)) {
-            $kanjiID = $row['id'];
-            $kanji = $row['kanji'];
-            $engMeaning = $row['eng'];
-            $hunMeaning = $row['hun'];
-            $engNote = $row['note_kan'];
-            $hunNote = $row['note_hkan'];
-            $userNoteID = $row['note_ukan'];
-            $readingON = $row['read_on'];
-            $readingON2 = $row['read_on2'];
-            $romanizedON = $row['on_romanized_1'];
-            $romanizedON2 = $row['on_romanized_2'];
-            $readingKUN = $row['read_kun'];
-            $readingKUN2 = $row['read_kun2'];
-            $romanizedKUN = $row['kun_romanized_1'];
-            $romanizedKUN2 = $row['kun_romanized_2'];
-            $radical = $row['radical'];
-            $strokeNumber = $row['stroke_number'];
-            $engComm = $row['comm_en'];
-            $hunComm = $row['comm_hu'];
-        }*/
         
         if ($_SESSION['lang'] == 0){
         $output = "<!doctype html>
@@ -1149,8 +1146,6 @@ class Connection {
                 $kanji = $row['kanji'];
                 $engMeaning = $row['eng'];
                 $hunMeaning = $row['hun'];
-                $engNote = $row['note_kan'];
-                $hunNote = $row['note_hkan'];
                 $userNoteID = $row['note_ukan'];
                 $readingON = $row['read_on'];
                 $readingON2 = $row['read_on2'];
@@ -1163,7 +1158,6 @@ class Connection {
                 $radical = $row['radical'];
                 $strokeNumber = $row['stroke_number'];
                 $engComm = $row['comm_en'];
-                $hunComm = $row['comm_hu'];
                 
                 $readings = "";
                 if($readingON2 != " "){
@@ -1176,7 +1170,7 @@ class Connection {
                     $readings .= "KUN reading:<br>$readingKUN ($romanizedKUN), $readingKUN2 ($romanizedKUN2)";
                 }
                 else{
-                    $readings .= "KUN reading: $readingKUN ($romanizedKUN)";
+                    $readings .= "KUN reading:<br>$readingKUN ($romanizedKUN)";
                 }
                 
                 $output .= "<tr class='hover'>
@@ -1196,13 +1190,316 @@ class Connection {
                             <meta charset='UTF-8'>
                             <meta name='viewport' content='width=device-width, initial-scale=1.0'>
                             <link rel='stylesheet' href='../assets/common.stylesheet.css'>
+                            <link rel='stylesheet' href='../assets/kanji_table_format.css'>
                             <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
                             <title>JStA Kanji lista</title>
                         </head>
                     <div align='center'>
                         <form action='../hu/subpages/hu.kanji.tools.php' name='back' method='post'>
                             <input class='actionButton1' type='submit' name='' value='Vissza'>
-                        </form>";
+                        </form>
+                        <br>
+                        <table class='tableKanji'>
+                        <caption><h1>Kanji lista</h1></caption>";
+            $output .= "<tr>
+                            <th><h2>Kajni</h2></th>
+                            <th><h2>Jelentés</h2></th>
+                            <th><h2>Kiolvasás</h2></th> 
+                            <th><h2>Adatok</h2></th>
+                            <th><h2>Gyakori használatok</h2></th>
+                        </tr>";
+            while($row = $result->fetch_assoc()){
+                $kanjiID = $row['id'];
+                $kanji = $row['kanji'];
+                $engMeaning = $row['eng'];
+                $hunMeaning = $row['hun'];
+                $userNoteID = $row['note_ukan'];
+                $readingON = $row['read_on'];
+                $readingON2 = $row['read_on2'];
+                $romanizedON = $row['on_romanized_1'];
+                $romanizedON2 = $row['on_romanized_2'];
+                $readingKUN = $row['read_kun'];
+                $readingKUN2 = $row['read_kun2'];
+                $romanizedKUN = $row['kun_romanized_1'];
+                $romanizedKUN2 = $row['kun_romanized_2'];
+                $radical = $row['radical'];
+                $strokeNumber = $row['stroke_number'];
+                $hunComm = $row['comm_hu'];
+                
+                $readings = "";
+                if($readingON2 != " "){
+                    $readings .= "ON kiolvasás:<br>$readingON ($romanizedON), $readingON2 ($romanizedON2)<br>";
+                }
+                else{
+                    $readings .= "ON kiolvasás:<br>$readingON ($romanizedON)<br>";
+                }
+                if($readingKUN2 != " "){
+                    $readings .= "KUN kiolvasás:<br>$readingKUN ($romanizedKUN), $readingKUN2 ($romanizedKUN2)";
+                }
+                else{
+                    $readings .= "KUN kiolvasás:<br>$readingKUN ($romanizedKUN)";
+                }
+                
+                $output .= "<tr class='hover'>
+                                <th class='kanjiCell'>$kanji</th>
+                                <th class='cellMiddleNoAlign'>$hunMeaning</th>
+                                <th class='cellMiddle'>$readings</th>
+                                <th class='cellMiddle'>Radikális: $radical<br>Vonások: $strokeNumber<br>Egyedi azonosító:$kanjiID</th>
+                                <th class='cellEnd'>$hunComm</th>
+                            </tr>";   
         }
+            echo $output;
+        }
+    }
+   #no hungarian support yet \/ 
+    function yourDictionaryPageAssembler(){
+        $conn = $this->connect();
+        $sql1 = "SELECT * FROM userdictionaryconnect WHERE userid = '".$_SESSION['userID']."'";
+        $result1 = $conn->query($sql1);
+        $tableName = "";
+        if ($_SESSION['lang'] == 0){
+            $output = "<!doctype html>
+                    <html lang='en'>
+                        <head>
+                            <meta charset='UTF-8'>
+                            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                            <link rel='stylesheet' href='../assets/common.stylesheet.css'>
+                            <link rel='stylesheet' href='../assets/kanji_table_format.css'>
+                            <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                            <title>JStA Your dictionary</title>
+                        </head> 
+                        <div align='center'>";
+            if(mysqli_num_rows($result1) > 0){
+                $result2 = mysqli_query($conn, $sql1);
+                while ($row = $result2->fetch_assoc()){
+                    $tableName = $row['tableName'];
+                    $output .= "<h3>You can list the words in your dictionary here:</h3>
+                    <form action='inc.list.user.dictionary.php' name='listUserDic' method='post'>
+                            <input class='actionButton1' type='submit' name='' value='".$tableName."'>
+                    </form>
+                    <h3>Or you can play <i>Do you know the word?</i> with the words in your dictionary:</h3>
+                    <form action='inc.list.user.dictionary.php' name='randomWordGameUserDic' method='post'>
+                            <input class='actionButton3' type='submit' name='' value='Do you know the word?'>
+                    </form>
+                    <br>
+                    <form action='../en/subpages/en.word.practice.tool.php' name='back' method='post'>
+                            <input class='actionButton1' type='submit' name='' value='Back'>
+                    </form>";
+                }
+            }
+            else{
+                $output .= "<h1>You currently have no personal dictionary!</h1>
+                <h3>Would you like to create one now?</h3>
+                <div align='center'>
+                        <form action='inc.create.user.dictionary.php' name='createUserDictionary' method='post'>
+                            <input class='actionButton1' type='submit' name='' value='Yes'>
+                </form>
+                <form action='../en/subpages/en.word.practice.tool.php' name='back' method='post'>
+                            <input class='actionButton1' type='submit' name='' value='No'>
+                </form>";
+            }
+            echo $output;
+        }
+        else{
+            $output = "<!doctype html>
+                    <html lang='hu'>
+                        <head>
+                            <meta charset='UTF-8'>
+                            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                            <link rel='stylesheet' href='../assets/common.stylesheet.css'>
+                            <link rel='stylesheet' href='../assets/kanji_table_format.css'>
+                            <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                            <title>JStA Kanji lista</title>
+                        </head>
+                        
+                    <div align='center'>
+                    <h1>Ez az oldal jelenleg nem elérhető!</h1>
+                        <form action='../hu/subpages/hu.word.practice.tool.php' name='back' method='post'>
+                            <input class='actionButton1' type='submit' name='' value='Vissza'>
+                        </form>";
+            echo $output;
+        }
+    }
+       #no hungarian support yet \/ 
+    function yourDictionaryCreate(){
+        $conn = $this->connect();
+        $sql1 = "SELECT * FROM userdictionaryconnect WHERE userid = '".$_SESSION['userID']."'";
+        $result1 = $conn->query($sql1);
+        $tableName = "";
+        if ($_SESSION['lang'] == 0){
+            $output = "<!doctype html>
+                    <html lang='en'>
+                        <head>
+                            <meta charset='UTF-8'>
+                            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                            <link rel='stylesheet' href='../assets/common.stylesheet.css'>
+                            <link rel='stylesheet' href='../assets/kanji_table_format.css'>
+                            <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                            <script src='../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                            <script src='../scripts/inc.js'></script>
+                            <title>JStA Kanji list</title>
+                        </head> 
+                        <div align='center'>";
+                    $output .= "<h3>Name your dictionary:</h3>
+                    <form action='inc.submit.user.dictionary.php' name='createUserDic' method='post'>
+                            <input name='dicName' type='text' id='input1' placeholder='Name your dictionary' onkeyup='valid(this)' onblur='valid(this)' maxlength='14'>
+                            <br>
+                            <input class='actionButton1' type='submit' name='' value='Create'>
+                    </form>
+                    <br>
+                    <form action='../en/subpages/en.word.practice.tool.php' name='cancelUserDic' method='post'>
+                            <input class='actionButton1' type='submit' name='' value='Cancel'>
+                    </form>";
+            echo $output;
+        }
+        else{
+            $output = "<!doctype html>
+                    <html lang='hu'>
+                        <head>
+                            <meta charset='UTF-8'>
+                            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                            <link rel='stylesheet' href='../assets/common.stylesheet.css'>
+                            <link rel='stylesheet' href='../assets/kanji_table_format.css'>
+                            <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                            <script src='../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                            <script src='../scripts/inc.js'></script>
+                            <title>JStA Kanji lista</title>
+                        </head>
+                        
+                    <div align='center'>
+                    <h3>Name your dictionary:</h3>
+                    <form action='inc.submit.user.dictionary.php' name='createUserDic' method='post'>
+                            <input name='dicName' type='text' id='input1' placeholder='Nevezd el a szótáradat' onkeyup='valid(this)' onblur='valid(this)' maxlength='14'>
+                            <br>
+                            <input class='actionButton1' type='submit' name='' value='Létrehozás'>
+                    </form>
+                    <br>
+                    <form action='../en/subpages/en.word.practice.tool.php' name='createUserDic' method='post'>
+                            <input class='actionButton1' type='submit' name='' value='Mégsem'>
+                    </form>";
+            echo $output;
+    }
+    }
+    
+    function yourDictionarySubmit($nameOfTable){
+        $conn = $this->connect();
+        /*$sql1 = "SELECT * FROM userdictionaryconnect WHERE userid = '".$_SESSION['userID']."'";*/
+        $tableNameLocal = mysqli_real_escape_string($conn, $nameOfTable);
+        $sql1 = "INSERT INTO userdictionaryconnect (id, userid, tableName, tableRealName) VALUES (null, '".$_SESSION['userID']."', '".$tableNameLocal."', '".$_SESSION['userID']."".$tableNameLocal."')";
+        $conn->query($sql1);
+        $sql2 = "CREATE TABLE ".$_SESSION['userID']."".$tableNameLocal."(wordid INT NOT NULL AUTO_INCREMENT, kana VARCHAR(100) NOT NULL, romanized VARCHAR(100) NOT NULL, meaning1 VARCHAR(100) NOT NULL, meaning2 VARCHAR(100) NOT NULL, PRIMARY KEY (wordid));";
+        $conn->query($sql2);
+        header ("Location: inc.user.dictionary.php");
+        /*$result1 = $conn->query($sql1);*/
+        
+    }
+       #no hungarian support yet \/ 
+    function yourDictionaryList(){
+        $conn = $this->connect();
+        $sql = "SELECT * FROM words";
+        $output = "";
+        $pageName = "";
+        $pageRealName = "";
+        $thereAre = false;
+        $sql1 = "SELECT * FROM userdictionaryconnect WHERE userid = '".$_SESSION['userID']."'";
+                $result1 = mysqli_query($conn, $sql1);
+                while ($row = $result1->fetch_assoc()){
+                    $pageName = $row['tableName'];
+                    $pageRNTemp = $row['tableRealName'];
+                    $pageRealName = mysqli_real_escape_string($conn, $pageRNTemp);
+                }
+        $sql2 = "SELECT * FROM ".$pageRealName."";
+        $result = $conn->query($sql2);
+        if(mysqli_num_rows($result) > 0){
+            $thereAre = true;
+        }
+        if($_SESSION['lang'] == 0){
+        $output .= "<!doctype html>
+                    <html lang='en'>
+                        <head>
+                            <meta charset='UTF-8'>
+                            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                            <link rel='stylesheet' href='../assets/common.stylesheet.css'>
+                            <link rel='stylesheet' href='../assets/kanji_table_format.css'>
+                            <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                            <script src='../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                            <script src='../scripts/inc.js'></script>
+                            <title>JStA ".$pageName."</title>
+                        </head> 
+                        <div align='center'>
+                        <form action='inc.user.dictionary.php' name='back' method='post'>
+                            <input class='actionButton1' type='submit' name='' value='Back'>
+                    </form><br>";
+            $output .=  "<table style='width:85%''>
+            <caption><h2>Your ".$pageName." dictionary</h2></caption>
+                    <tr>
+                    <th><h2>ID</h2></th>
+                    <th><h2>Kana</h2></th> 
+                    <th><h2>Ro-maji</h2></th>
+                    <th><h2>Meaning 1</h2></th>
+                    <th><h2>Meaning 2</h2></th>
+                    <th>This action is immediate<br>and irriversable!</th>
+                </tr>";
+        if($thereAre){
+            $result = mysqli_query($conn, $sql2);
+            while ($row = mysqli_fetch_array($result)) {
+                $output .= '<tr class="lineHIghlight"><th>'.$row['wordid'].'</th><th class="th1">'.$row['kana'].'</th><th class="th1">'.$row['romanized'].'</th>';
+                $output .= '<th class="th1">'.$row['meaning1'].'</th><th class="th1">'.$row['meaning2'].'</th>';
+                $output .= "<th><form action='inc.delete.word.user.dictionary.php' name='addWordUserDic' method='post'>
+                <input class='actionButton1' type='submit' name='' value='Delete'>
+                <input class='hiddenInput' name='wordid' type='number' id='id1' value='".$row['wordid']."'>
+                </form>
+                </th>";
+                
+            }
+        }
+        else{
+            $output .= "Your dictionary is currently empty...<br>";
+            
+        }
+            $output .= "<tr><form action='inc.add.word.user.dictionary.php' name='addWordUserDic' method='post'>
+                            <th><input class='actionButton1' type='submit' name='' value='Add'></th>
+                            <th><input name='kana' type='text' id='input2' placeholder='れい (例)' maxlength='20'></th>
+                            <th><input name='romanized' type='text' id='input3' placeholder='rei' maxlength='50'></th>
+                            <th><input name='meaning1' type='text' id='input4' placeholder='Example' maxlength='50'></th>
+                            <th><input name='meaning2' type='text' id='input5' placeholder='Example' maxlength='50'></th>
+                            <th></th>
+                    </form></tr>";
+            echo $output;
+        }
+        else{
+            $output .= "";
+        }
+    }
+    
+    function yourDictionaryAddWord($kana, $romanized, $meaning1, $meaning2){
+        $conn = $this->connect();
+        $kanaLocal = mysqli_real_escape_string($conn, $kana);
+        $romanizedLocal = mysqli_real_escape_string($conn, $romanized);
+        $meaning1Local = mysqli_real_escape_string($conn, $meaning1);
+        $meaning2Local = mysqli_real_escape_string($conn, $meaning2);
+        $tableName;
+        $sql2 = "SELECT * FROM userdictionaryconnect WHERE userid = '".$_SESSION['userID']."'";
+        $result2 = mysqli_query($conn, $sql2);
+                while ($row = $result2->fetch_assoc()){
+                    $tableName = $row['tableRealName'];
+                }
+        $tableNameLocal = mysqli_real_escape_string($conn, $tableName);
+        $sql1 = "INSERT INTO `".$tableNameLocal."`(wordid, kana, romanized, meaning1, meaning2) VALUES (null, '".$kanaLocal."','".$romanizedLocal."', '".$meaning1Local."', '".$meaning2Local."')";
+        $conn->query($sql1);
+        header("Location: inc.list.user.dictionary.php");
+    }
+    
+    function yourDictionaryDeleteWord($where){
+        $conn = $this->connect();
+        $tableName;
+        $sql1 = "SELECT * FROM userdictionaryconnect WHERE userid = '".$_SESSION['userID']."'";
+        $result1 = mysqli_query($conn, $sql1);
+                while ($row = $result1->fetch_assoc()){
+                    $tableName = $row['tableRealName'];
+                }
+        $sql2 = "DELETE FROM ".$tableName." WHERE wordid = '$where'";
+        $conn->query($sql2);
+        header("Location: inc.list.user.dictionary.php");
     }
 }

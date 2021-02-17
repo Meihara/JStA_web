@@ -18,6 +18,11 @@ $conn = new Connection();
         </form>
     </div>
     <div align="center">
+        <form action="../inc/static/common/static.common.login.required.php" name="kanjiPractice" method="post">
+            <input class="actionButton2" type="submit" name="" value="Learn kanji">
+        </form>
+    </div>
+    <div align="center">
     <form action="../inc/inc.signup.php" name="signUpForm" method="post">
             <input class="actionButton2" type="submit" name="" value="Sign up">
         </form>

@@ -35,6 +35,8 @@
 }
 .hiddenInput {
     visibility: hidden;
+    width: 0px;
+    height: 0px;
 }
 .settingsButtonHu {
     height: 30px;
@@ -47,6 +49,12 @@
     width: 250;
     font-size: 20px;
     font-weight: bolder;
+}
+.actionButton3{
+    height: 30px;
+    width: 250;
+    font-size: 20px;
+    font-weight: bold;
 }
 .th1 {
     text-align: left;
@@ -82,5 +90,13 @@
     border-width: 3px;
     width:  15%;
 }
+.disclaimerFormat1{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: gray;
+    font-size: 13px
+}
+
 
 
