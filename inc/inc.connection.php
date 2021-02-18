@@ -1251,7 +1251,7 @@ class Connection {
             echo $output;
         }
     }
-   #no hungarian support yet \/ 
+   #no hungarian support yet \/ solved?
     function yourDictionaryPageAssembler(){
         $conn = $this->connect();
         $sql1 = "SELECT * FROM userdictionaryconnect WHERE userid = '".$_SESSION['userID']."'";
@@ -1309,18 +1309,42 @@ class Connection {
                             <link rel='stylesheet' href='../assets/common.stylesheet.css'>
                             <link rel='stylesheet' href='../assets/kanji_table_format.css'>
                             <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
-                            <title>JStA Kanji lista</title>
-                        </head>
-                        
-                    <div align='center'>
-                    <h1>Ez az oldal jelenleg nem elérhető!</h1>
-                        <form action='../hu/subpages/hu.word.practice.tool.php' name='back' method='post'>
+                            <title>JStA A te szótárad</title>
+                        </head> 
+                        <div align='center'>";
+            if(mysqli_num_rows($result1) > 0){
+                $result2 = mysqli_query($conn, $sql1);
+                while ($row = $result2->fetch_assoc()){
+                    $tableName = $row['tableName'];
+                    $output .= "<h3>Itt listázhatod a szótáradban lévő szavakat:</h3>
+                    <form action='inc.list.user.dictionary.php' name='listUserDic' method='post'>
+                            <input class='actionButton1' type='submit' name='' value='".$tableName."'>
+                    </form>
+                    <h3>Vagy játszhatsz a<i>Tudod a szót?</i> játékot a szótáradban szereplő szavakal:</h3>
+                    <form action='inc.list.user.dictionary.php' name='randomWordGameUserDic' method='post'>
+                            <input class='actionButton3' type='submit' name='' value='Tudod a szót?'>
+                    </form>
+                    <br>
+                    <form action='../en/subpages/en.word.practice.tool.php' name='back' method='post'>
                             <input class='actionButton1' type='submit' name='' value='Vissza'>
-                        </form>";
-            echo $output;
+                    </form>";
+                }
+            }
+            else{
+                $output .= "<h1>Jelenleg nem rendelkezel saját szótárral!</h1>
+                <h3>Szeretnél most létrehozni egyet?</h3>
+                <div align='center'>
+                        <form action='inc.create.user.dictionary.php' name='createUserDictionary' method='post'>
+                            <input class='actionButton1' type='submit' name='' value='Igen'>
+                </form>
+                <form action='../en/subpages/en.word.practice.tool.php' name='back' method='post'>
+                            <input class='actionButton1' type='submit' name='' value='Nem'>
+                </form>";
         }
+            echo $output;
     }
-       #no hungarian support yet \/ 
+    }
+       #no hungarian support yet \/ solved?
     function yourDictionaryCreate(){
         $conn = $this->connect();
         $sql1 = "SELECT * FROM userdictionaryconnect WHERE userid = '".$_SESSION['userID']."'";
@@ -1374,7 +1398,7 @@ class Connection {
                             <input class='actionButton1' type='submit' name='' value='Létrehozás'>
                     </form>
                     <br>
-                    <form action='../en/subpages/en.word.practice.tool.php' name='createUserDic' method='post'>
+                    <form action='../hu/subpages/hu.word.practice.tool.php' name='createUserDic' method='post'>
                             <input class='actionButton1' type='submit' name='' value='Mégsem'>
                     </form>";
             echo $output;
@@ -1393,7 +1417,7 @@ class Connection {
         /*$result1 = $conn->query($sql1);*/
         
     }
-       #no hungarian support yet \/ 
+       #no hungarian support yet \/ solver?
     function yourDictionaryList(){
         $conn = $this->connect();
         $sql = "SELECT * FROM words";
@@ -1468,7 +1492,58 @@ class Connection {
             echo $output;
         }
         else{
-            $output .= "";
+            $output .= "<!doctype html>
+                    <html lang='hu'>
+                        <head>
+                            <meta charset='UTF-8'>
+                            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                            <link rel='stylesheet' href='../assets/common.stylesheet.css'>
+                            <link rel='stylesheet' href='../assets/kanji_table_format.css'>
+                            <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                            <script src='../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                            <script src='../scripts/inc.js'></script>
+                            <title>JStA ".$pageName."</title>
+                        </head> 
+                        <div align='center'>
+                        <form action='inc.user.dictionary.php' name='back' method='post'>
+                            <input class='actionButton1' type='submit' name='' value='Vissza'>
+                    </form><br>";
+            $output .=  "<table style='width:85%''>
+            <caption><h2>A te ".$pageName." szótárad</h2></caption>
+                    <tr>
+                    <th><h2>ID</h2></th>
+                    <th><h2>Kana</h2></th> 
+                    <th><h2>Ro-maji</h2></th>
+                    <th><h2>Jelentés 1</h2></th>
+                    <th><h2>Jelentés 2</h2></th>
+                    <th>Ez a művelet azonnali,<br>és visszafordíthatatlan!</th>
+                </tr>";
+        if($thereAre){
+            $result = mysqli_query($conn, $sql2);
+            while ($row = mysqli_fetch_array($result)) {
+                $output .= '<tr class="lineHIghlight"><th>'.$row['wordid'].'</th><th class="th1">'.$row['kana'].'</th><th class="th1">'.$row['romanized'].'</th>';
+                $output .= '<th class="th1">'.$row['meaning1'].'</th><th class="th1">'.$row['meaning2'].'</th>';
+                $output .= "<th><form action='inc.delete.word.user.dictionary.php' name='addWordUserDic' method='post'>
+                <input class='actionButton1' type='submit' name='' value='Törlés'>
+                <input class='hiddenInput' name='wordid' type='number' id='id1' value='".$row['wordid']."'>
+                </form>
+                </th>";
+                
+            }
+        }
+        else{
+            $output .= "A szótár jelenleg üres...<br>";
+            
+        }
+            $output .= "<tr><form action='inc.add.word.user.dictionary.php' name='addWordUserDic' method='post'>
+                            <th><input class='actionButton1' type='submit' name='' value='Hozzáad'></th>
+                            <th><input name='kana' type='text' id='input2' placeholder='れい (例)' maxlength='20'></th>
+                            <th><input name='romanized' type='text' id='input3' placeholder='rei' maxlength='50'></th>
+                            <th><input name='meaning1' type='text' id='input4' placeholder='Példa' maxlength='50'></th>
+                            <th><input name='meaning2' type='text' id='input5' placeholder='Példa' maxlength='50'></th>
+                            <th></th>
+                    </form></tr>";
+            echo $output;
         }
     }
     

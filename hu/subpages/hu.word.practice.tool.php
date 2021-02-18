@@ -35,6 +35,12 @@ $conn = new Connection();
     </div>
     <br>
     <div align="center">
+        <form action="../../inc/inc.user.dictionary.php" name="userDic" method="post">
+            <input class="actionButton1" type="submit" name="" value="A te szótárad">
+        </form>
+    </div>
+    <br>
+    <div align="center">
         <form action="../../inc/inc.hu.guest.back.home.php">
         <input class="actionButton1" type="submit" value="Vissza">
         </form>
