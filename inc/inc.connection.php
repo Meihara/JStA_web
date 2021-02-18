@@ -1278,7 +1278,7 @@ class Connection {
                             <input class='actionButton1' type='submit' name='' value='".$tableName."'>
                     </form>
                     <h3>Or you can play <i>Do you know the word?</i> with the words in your dictionary:</h3>
-                    <form action='inc.list.user.dictionary.php' name='randomWordGameUserDic' method='post'>
+                    <form action='inc.word.game.user.dictionary.php' name='randomWordGameUserDic' method='post'>
                             <input class='actionButton3' type='submit' name='' value='Do you know the word?'>
                     </form>
                     <br>
@@ -1321,11 +1321,11 @@ class Connection {
                             <input class='actionButton1' type='submit' name='' value='".$tableName."'>
                     </form>
                     <h3>Vagy játszhatsz a<i>Tudod a szót?</i> játékot a szótáradban szereplő szavakal:</h3>
-                    <form action='inc.list.user.dictionary.php' name='randomWordGameUserDic' method='post'>
+                    <form action='inc.word.game.user.dictionary.php' name='randomWordGameUserDic' method='post'>
                             <input class='actionButton3' type='submit' name='' value='Tudod a szót?'>
                     </form>
                     <br>
-                    <form action='../en/subpages/en.word.practice.tool.php' name='back' method='post'>
+                    <form action='../hu/subpages/hu.word.practice.tool.php' name='back' method='post'>
                             <input class='actionButton1' type='submit' name='' value='Vissza'>
                     </form>";
                 }
@@ -1577,4 +1577,435 @@ class Connection {
         $conn->query($sql2);
         header("Location: inc.list.user.dictionary.php");
     }
+    #kana > language (ka-lng), kana > romanized (ka-rm), language > kana (lng-ka)
+    function yourDictionaryWordGameRandom(){
+        $conn = $this->connect();
+        $op = "";
+        $statement = rand(1,3);
+        $tableName;
+        $titleEx;
+        $sql2 = "SELECT * FROM userdictionaryconnect WHERE userid = '".$_SESSION['userID']."'";
+        $result2 = mysqli_query($conn, $sql2);
+                while ($row = $result2->fetch_assoc()){
+                    $tableName = $row['tableRealName'];
+                    $titleEx = $row['tableName'];
+                }
+        $tableNameLocal = mysqli_real_escape_string($conn, $tableName);
+        $sql = "SELECT * FROM ".$tableNameLocal." ORDER BY RAND() LIMIT 1";
+        $result = mysqli_query($conn, $sql);
+        if($_SESSION['lang'] == 0){
+            $op .= "<!doctype html>
+                <html lang='en'>
+                <head>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <link rel='stylesheet' href='../assets/common.stylesheet.css'>
+                    <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                    <script src='../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                    <script src='../scripts/back.js'></script>
+                    <title>JStA ".$titleEx." Do you know the word?</title>
+                </head>
+                <body>
+                <div align='center'>";
+        if($statement == 1) {
+            //kana > lang
+            while($row = mysqli_fetch_array($result)){
+                $op .= "
+                    <h3>What does '".$row['kana']."' mean?</h3>
+                    <form action='inc.word.game.user.dictionary.check.php' name='wordCheck' method='post'>
+                        <input name='answer' type='text' id='input1' placeholder='Answer' maxlength='200'>
+                        <br>
+                        <input class='actionButton2' type='submit' name='' value='Check'>
+                        <br>
+                        <input name='truth1' value='".$row['wordid']."' type='text' class='hiddenInput'>
+                        <input name='methode' value='ka-lng' type='text' class='hiddenInput'>
+                    </form>
+                </div>
+                <br>
+                <div align='center'>
+                <form action='inc.user.dictionary.php'>
+                    <input class='actionButton1' type='submit' value='Finish game!'>
+                </form>
+                </div>
+                </body>
+                </html>";
+            }
+        }
+        else if($statement == 2){
+            //kana > ro-maji
+            while($row = mysqli_fetch_array($result)){
+                $op .= "
+                    <h3>Write '".$row['kana']."' in Ro-maji (with latin letters).</h3>
+                    <form action='inc.word.game.user.dictionary.check.php' name='wordCheck' method='post'>
+                        <input name='answer' type='text' id='input1' placeholder='Answer' maxlength='200'>
+                        <br>
+                        <input class='actionButton2' type='submit' name='' value='Check'>
+                        <br>
+                        <input name='truth1' value='".$row['wordid']."' type='text' class='hiddenInput'>
+                        <input name='methode' value='ka-rm' type='text' class='hiddenInput'>
+                    </form>
+                </div>
+                <div align='center'>
+                <form action='inc.user.dictionary.php'>
+                    <input class='actionButton1' type='submit' value='Finish game!'>
+                </form>
+                </div>
+                </body>
+                </html>";
+            }
+        }
+        else{
+            //lang > kana
+            while($row = mysqli_fetch_array($result)){
+                $op .= "
+                    <h3>Translate '".$row['meaning1']."' to Japanese.<br>(Use the kana you have defined in your dictionary)</h3>
+                    <form action='inc.word.game.user.dictionary.check.php' name='wordCheck' method='post'>
+                        <input name='answer' type='text' id='input1' placeholder='Answer' maxlength='200'>
+                        <br>
+                        <input class='actionButton2' type='submit' name='' value='Check'>
+                        <br>
+                        <input name='truth1' value='".$row['wordid']."' type='text' class='hiddenInput'>
+                        <input name='methode' value='lng-ka' type='text' class='hiddenInput'>
+                    </form>
+                </div>
+                <div align='center'>
+                <form action='inc.user.dictionary.php'>
+                    <input class='actionButton1' type='submit' value='Finish game!'>
+                </form>
+                </div>
+                </body>
+                </html>";
+            }  
+        }
+        }
+        else{
+            $op .= "<!doctype html>
+                <html lang='hu'>
+                <head>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <link rel='stylesheet' href='../assets/common.stylesheet.css'>
+                    <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                    <script src='../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                    <script src='../scripts/back.js'></script>
+                    <title>JStA ".$titleEx." Tudod a szót?</title>
+                </head>
+                <body>
+                <div align='center'>";
+        if($statement == 1) {
+            //kana > lang
+            while($row = mysqli_fetch_array($result)){
+                $op .= "
+                    <h3>Mit jelent '".$row['kana']."'?</h3>
+                    <form action='inc.word.game.user.dictionary.check.php' name='wordCheck' method='post'>
+                        <input name='answer' type='text' id='input1' placeholder='Válasz' maxlength='200'>
+                        <br>
+                        <input class='actionButton2' type='submit' name='' value='Ellenőrzés!'>
+                        <br>
+                        <input name='truth1' value='".$row['wordid']."' type='text' class='hiddenInput'>
+                        <input name='methode' value='ka-lng' type='text' class='hiddenInput'>
+                    </form>
+                </div>
+                <br>
+                <div align='center'>
+                <form action='inc.user.dictionary.php'>
+                    <input class='actionButton1' type='submit' value='Játék befejezése!'>
+                </form>
+                </div>
+                </body>
+                </html>";
+            }
+        }
+        else if($statement == 2){
+            //kana > ro-maji
+            while($row = mysqli_fetch_array($result)){
+                $op .= "
+                    <h3>Írd le '".$row['kana']."'-t Ro-majival (latin betűkkel).</h3>
+                    <form action='inc.word.game.user.dictionary.check.php' name='wordCheck' method='post'>
+                        <input name='answer' type='text' id='input1' placeholder='Válasz' maxlength='200'>
+                        <br>
+                        <input class='actionButton2' type='submit' name='' value='Ellenőrzés!'>
+                        <br>
+                        <input name='truth1' value='".$row['wordid']."' type='text' class='hiddenInput'>
+                        <input name='methode' value='ka-rm' type='text' class='hiddenInput'>
+                    </form>
+                </div>
+                <div align='center'>
+                <form action='inc.user.dictionary.php'>
+                    <input class='actionButton1' type='submit' value='Játék befejezése!'>
+                </form>
+                </div>
+                </body>
+                </html>";
+            }
+        }
+        else{
+            //lang > kana
+            while($row = mysqli_fetch_array($result)){
+                $op .= "
+                    <h3>Fordítsd le '".$row['meaning1']."'-t Japánra.<br>(Használd a kanát, amit a szótárban megadtál!)</h3>
+                    <form action='inc.word.game.user.dictionary.check.php' name='wordCheck' method='post'>
+                        <input name='answer' type='text' id='input1' placeholder='Válasz' maxlength='200'>
+                        <br>
+                        <input class='actionButton2' type='submit' name='' value='Ellenőrzés!'>
+                        <br>
+                        <input name='truth1' value='".$row['wordid']."' type='text' class='hiddenInput'>
+                        <input name='methode' value='lng-ka' type='text' class='hiddenInput'>
+                    </form>
+                </div>
+                <div align='center'>
+                <form action='inc.user.dictionary.php'>
+                    <input class='actionButton1' type='submit' value='Játék befejezése!'>
+                </form>
+                </div>
+                </body>
+                </html>";
+            }  
+        }
+        }
+        echo $op;
+    }
+    
+    function yourDictionaryWordGameCheck($where, $ans, $meth){
+        $conn = $this->connect();
+        $trueanswer1;
+        $trueanswer2;
+        $beans;
+        $tableName;
+        $titleEx;
+        $output = "";
+        $sql2 = "SELECT * FROM userdictionaryconnect WHERE userid = '".$_SESSION['userID']."'";
+        $result2 = mysqli_query($conn, $sql2);
+                while ($row = $result2->fetch_assoc()){
+                    $tableName = $row['tableRealName'];
+                    $titleEx = $row['tableName'];
+                }
+        $sql = "SELECT * FROM ".$tableName." WHERE wordid='$where'";
+        $result = mysqli_query($conn, $sql);
+        
+        
+        if($_SESSION['lang'] == 0){ #english
+            $output .= "<!doctype html>
+                    <html lang='en'>
+                    <head>
+                    <link rel='stylesheet' href='../assets/common.stylesheet.css'>
+                    <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <script src='../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                    <script src='../scripts/back.js'></script>
+                    <title>JStA ".$titleEx." Do you know the word?</title>
+                    </head>
+                    <body>
+                    <div align='center'>";
+        if ($meth  == "ka-lng"){
+            while ($row = $result->fetch_assoc()) {
+                $trueanswer1 = $row['meaning1'];
+                $trueanswer2 = $row['meaning2'];
+                $beans = $row['kana'];
+            }
+                if($trueanswer1 == $ans || $trueanswer2 == $ans){
+                    
+                    $output .= "<h2>Correct answer!</h2>
+                        <br>
+                        <h3>'".$beans."' means '".$trueanswer1."'.</h3>
+                        <form action='inc.word.game.user.dictionary.php' method='get'>
+                            <input class='actionButton1' type='submit' name='' value='Next!'>
+                        </form>
+                        </div>
+                        </body>
+                        </html>";
+                }
+            else {
+                $output .= "
+                        <h2>Wrong answer!</h2>
+                        <br>
+                        <h3>'".$beans."' means '".$trueanswer1."'.</h3>
+                        <form action='inc.word.game.user.dictionary.php' method='get'>
+                            <input class='actionButton1' type='submit' name='' value='Next!'>
+                        </form>
+                        </div>
+                        </body>
+                        </html>";
+            }
+        }
+        else if ($meth == "ka-rm"){
+            $result = mysqli_query($conn, $sql);
+            while ($row = $result->fetch_assoc()) {
+                $trueanswer1 = $row['romanized'];
+                /*$trueanswer2 = $row['roman_w'];*/
+                $beans = $row['kana'];
+            }
+                if($trueanswer1 == $ans){
+                    $output .= "
+                        <h2>Correct answer!</h2>
+                        <br>
+                        <h3>'".$beans."' is written as '".$trueanswer1."' in ro-maji.</h3>
+                        <form action='inc.word.game.user.dictionary.php' method='get'>
+                            <input class='actionButton1' type='submit' name='' value='Next!'>
+                        </form>
+                        </div>
+                        </body>
+                        </html>";
+                }
+            else {
+                $output .= "
+                        <h2>Wrong answer!</h2>
+                        <br>
+                        <h3>'".$beans."' is written as '".$trueanswer1."' in ro-maji.</h3>
+                        <form action='inc.word.game.user.dictionary.php' method='get'>
+                            <input class='actionButton1' type='submit' name='' value='Next!'>
+                        </form>
+                        </div>
+                        </body>
+                        </html>";
+            }
+        }
+            else{
+            $result = mysqli_query($conn, $sql);
+            while ($row = $result->fetch_assoc()) {
+                $trueanswer1 = $row['kana'];
+                $trueanswer2 = $row['romanized'];
+                $beans = $row['meaning1'];
+            }
+                if($trueanswer1 == $ans){
+                    $output .= "
+                        <h2>Correct answer!</h2>
+                        <br>
+                        <h3>'".$beans."' means '".$trueanswer1."'.</h3>
+                        <form action='inc.word.game.user.dictionary.php' method='get'>
+                            <input class='actionButton1' type='submit' name='' value='Next!'>
+                        </form>
+                        </div>
+                        </body>
+                        </html>";
+                }
+            else {
+                $output .= "<
+                        <h2>Wrong answer!</h2>
+                        <br>
+                        <h3>'".$beans."' means '".$trueanswer1."' (".$trueanswer2.").</h3>
+                        <form action='inc.word.game.user.dictionary.php' method='get'>
+                            <input class='actionButton1' type='submit' name='' value='Next!'>
+                        </form>
+                        </div>
+                        </body>
+                        </html>";
+            }
+        }
+        }
+        else{
+            $output .= "<!doctype html>
+                    <html lang='hu'>
+                    <head>
+                    <link rel='stylesheet' href='../assets/common.stylesheet.css'>
+                    <link rel='shortcut icon' href='../Project-JStA/wip/logo/index_logo.png'/>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <script src='../scripts/jQueryAssets/SpryDOMUtils.js'></script>
+                    <script src='../scripts/back.js'></script>
+                    <title>JStA ".$titleEx." Tudod a szót?</title>
+                    </head>
+                    <body>
+                    <div align='center'>";
+        if ($meth  == "ka-lng"){
+            while ($row = $result->fetch_assoc()) {
+                $trueanswer1 = $row['meaning1'];
+                $trueanswer2 = $row['meaning2'];
+                $beans = $row['kana'];
+            }
+                if($trueanswer1 == $ans || $trueanswer2 == $ans){
+                    
+                    $output .= "<h2>Helyes válasz!</h2>
+                        <br>
+                        <h3>'".$beans."' valóban azt jelenti, hogy '".$trueanswer1."'.</h3>
+                        <form action='inc.word.game.user.dictionary.php' method='get'>
+                            <input class='actionButton1' type='submit' name='' value='Következő!'>
+                        </form>
+                        </div>
+                        </body>
+                        </html>";
+                }
+            else {
+                $output .= "
+                        <h2>Nem találtad el!</h2>
+                        <br>
+                        <h3>'".$beans."' azt jelenti, hogy '".$trueanswer1."'.</h3>
+                        <form action='inc.word.game.user.dictionary.php' method='get'>
+                            <input class='actionButton1' type='submit' name='' value='Következő!'>
+                        </form>
+                        </div>
+                        </body>
+                        </html>";
+            }
+        }
+        else if ($meth == "ka-rm"){
+            $result = mysqli_query($conn, $sql);
+            while ($row = $result->fetch_assoc()) {
+                $trueanswer1 = $row['romanized'];
+                /*$trueanswer2 = $row['roman_w'];*/
+                $beans = $row['kana'];
+            }
+                if($trueanswer1 == $ans){
+                    $output .= "
+                        <h2>Helyes válasz!</h2>
+                        <br>
+                        <h3>'".$beans."'-t valóban úgy kell írni, hogy '".$trueanswer1."'.</h3>
+                        <form action='inc.word.game.user.dictionary.php' method='get'>
+                            <input class='actionButton1' type='submit' name='' value='Következő!'>
+                        </form>
+                        </div>
+                        </body>
+                        </html>";
+                }
+            else {
+                $output .= "
+                        <h2>Nem találtad el!</h2>
+                        <br>
+                        <h3>'".$beans."'-t úgy kell írni, hogy '".$trueanswer1."'.</h3>
+                        <form action='inc.word.game.user.dictionary.php' method='get'>
+                            <input class='actionButton1' type='submit' name='' value='Következő!'>
+                        </form>
+                        </div>
+                        </body>
+                        </html>";
+            }
+        }
+            else{
+            $result = mysqli_query($conn, $sql);
+            while ($row = $result->fetch_assoc()) {
+                $trueanswer1 = $row['kana'];
+                $trueanswer2 = $row['romanized'];
+                $beans = $row['meaning1'];
+            }
+                if($trueanswer1 == $ans){
+                    $output .= "
+                        <h2>Helyes válasz!</h2>
+                        <br>
+                        <h3>'".$beans."' valóban azt jelenti, hogy '".$trueanswer1."'.</h3>
+                        <form action='inc.word.game.user.dictionary.php' method='get'>
+                            <input class='actionButton1' type='submit' name='' value='Következő!'>
+                        </form>
+                        </div>
+                        </body>
+                        </html>";
+                }
+            else {
+                $output .= "<
+                        <h2>Nem találtad el!</h2>
+                        <br>
+                        <h3>'".$beans."' azt jelenti, hogy '".$trueanswer1."' (".$trueanswer2.").</h3>
+                        <form action='inc.word.game.user.dictionary.php' method='get'>
+                            <input class='actionButton1' type='submit' name='' value='Következő!'>
+                        </form>
+                        </div>
+                        </body>
+                        </html>";
+        }
+    }
+}
+        echo $output;
+    }
+    
+    
 }
