@@ -1320,7 +1320,7 @@ class Connection {
                     <form action='inc.list.user.dictionary.php' name='listUserDic' method='post'>
                             <input class='actionButton1' type='submit' name='' value='".$tableName."'>
                     </form>
-                    <h3>Vagy játszhatsz a<i>Tudod a szót?</i> játékot a szótáradban szereplő szavakal:</h3>
+                    <h3>Vagy játszhatod a <i>Tudod a szót?</i> játékot a szótáradban szereplő szavakal:</h3>
                     <form action='inc.word.game.user.dictionary.php' name='randomWordGameUserDic' method='post'>
                             <input class='actionButton3' type='submit' name='' value='Tudod a szót?'>
                     </form>
@@ -1817,8 +1817,7 @@ class Connection {
                         </html>";
                 }
             else {
-                $output .= "
-                        <h2>Wrong answer!</h2>
+                $output .= "<h2>Wrong answer!</h2>
                         <br>
                         <h3>'".$beans."' means '".$trueanswer1."'.</h3>
                         <form action='inc.word.game.user.dictionary.php' method='get'>
@@ -1837,8 +1836,7 @@ class Connection {
                 $beans = $row['kana'];
             }
                 if($trueanswer1 == $ans){
-                    $output .= "
-                        <h2>Correct answer!</h2>
+                    $output .= "<h2>Correct answer!</h2>
                         <br>
                         <h3>'".$beans."' is written as '".$trueanswer1."' in ro-maji.</h3>
                         <form action='inc.word.game.user.dictionary.php' method='get'>
@@ -1849,8 +1847,7 @@ class Connection {
                         </html>";
                 }
             else {
-                $output .= "
-                        <h2>Wrong answer!</h2>
+                $output .= "<h2>Wrong answer!</h2>
                         <br>
                         <h3>'".$beans."' is written as '".$trueanswer1."' in ro-maji.</h3>
                         <form action='inc.word.game.user.dictionary.php' method='get'>
@@ -1869,8 +1866,7 @@ class Connection {
                 $beans = $row['meaning1'];
             }
                 if($trueanswer1 == $ans){
-                    $output .= "
-                        <h2>Correct answer!</h2>
+                    $output .= "<h2>Correct answer!</h2>
                         <br>
                         <h3>'".$beans."' means '".$trueanswer1."'.</h3>
                         <form action='inc.word.game.user.dictionary.php' method='get'>
@@ -1881,8 +1877,7 @@ class Connection {
                         </html>";
                 }
             else {
-                $output .= "<
-                        <h2>Wrong answer!</h2>
+                $output .= "<h2>Wrong answer!</h2>
                         <br>
                         <h3>'".$beans."' means '".$trueanswer1."' (".$trueanswer2.").</h3>
                         <form action='inc.word.game.user.dictionary.php' method='get'>
@@ -1927,8 +1922,7 @@ class Connection {
                         </html>";
                 }
             else {
-                $output .= "
-                        <h2>Nem találtad el!</h2>
+                $output .= "<h2>Nem találtad el!</h2>
                         <br>
                         <h3>'".$beans."' azt jelenti, hogy '".$trueanswer1."'.</h3>
                         <form action='inc.word.game.user.dictionary.php' method='get'>
@@ -1947,8 +1941,7 @@ class Connection {
                 $beans = $row['kana'];
             }
                 if($trueanswer1 == $ans){
-                    $output .= "
-                        <h2>Helyes válasz!</h2>
+                    $output .= "<h2>Helyes válasz!</h2>
                         <br>
                         <h3>'".$beans."'-t valóban úgy kell írni, hogy '".$trueanswer1."'.</h3>
                         <form action='inc.word.game.user.dictionary.php' method='get'>
@@ -1959,8 +1952,7 @@ class Connection {
                         </html>";
                 }
             else {
-                $output .= "
-                        <h2>Nem találtad el!</h2>
+                $output .= "<h2>Nem találtad el!</h2>
                         <br>
                         <h3>'".$beans."'-t úgy kell írni, hogy '".$trueanswer1."'.</h3>
                         <form action='inc.word.game.user.dictionary.php' method='get'>
@@ -1979,8 +1971,7 @@ class Connection {
                 $beans = $row['meaning1'];
             }
                 if($trueanswer1 == $ans){
-                    $output .= "
-                        <h2>Helyes válasz!</h2>
+                    $output .= "<h2>Helyes válasz!</h2>
                         <br>
                         <h3>'".$beans."' valóban azt jelenti, hogy '".$trueanswer1."'.</h3>
                         <form action='inc.word.game.user.dictionary.php' method='get'>
@@ -1991,8 +1982,7 @@ class Connection {
                         </html>";
                 }
             else {
-                $output .= "<
-                        <h2>Nem találtad el!</h2>
+                $output .= "<h2>Nem találtad el!</h2>
                         <br>
                         <h3>'".$beans."' azt jelenti, hogy '".$trueanswer1."' (".$trueanswer2.").</h3>
                         <form action='inc.word.game.user.dictionary.php' method='get'>
